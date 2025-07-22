@@ -1,9 +1,15 @@
 #!/bin/bash
+#
 echo "Deleting pre-existing config"
 rm -rf ~/.bashrc && rm -rf ~/.config/nvim && rm -rf ~/.tmux*
 echo "Linking bash config"
-cp -L ./bash/.bashrc ~/.bashrc
+cp -l ./bash/.bashrc ~/.bashrc
 echo "Linking tmux configs"
-cp -rL ./tmux/.* ~/
+cp -rl ./tmux/.* ~/
 echo "Linking nvim configs"
-cp -rL ./nvim ~/.config/
+cp -rl ./nvim ~/.config/
+#
+sudo sh -c "
+rm -rf /etc/ssh/ssh_config* /etc/ssh/sshd_config*;
+cp -rlL ./private/ssh/* /etc/ssh/;
+"

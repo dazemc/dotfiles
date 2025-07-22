@@ -19,3 +19,6 @@
 [submodule "tmux/.tmux/plugins/tmux-prefix-highlight"]
 	path = tmux/.tmux/plugins/tmux-prefix-highlight
 	url = https://github.com/tmux-plugins/tmux-prefix-highlight
+[submodule "private"]
+	path = private
+	url = git@github.com:dazemc/private_dotfiles.git
