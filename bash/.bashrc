@@ -1,7 +1,7 @@
 #
 # ~/.bashrc
 #
-
+export TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins/
 export LC_ALL=en_US.utf-8
 export LANG=en_US.utf-8
 
@@ -14,11 +14,6 @@ PS1='[\u@\h \W]\$ '
 
 if [[ -z "$SSH_CONNECTION" && -z "$TMUX" ]] && uwsm check may-start; then
 	exec uwsm start hyprland.desktop
-fi
-
-# Supress weird OSC sequence that keeps displaying when opening tmux
-if [[ -n "$TMUX" ]]; then
-  printf '\033]11;#000000\007' >/dev/null
 fi
 
 # Java bullshit
