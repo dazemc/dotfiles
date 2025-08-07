@@ -1,6 +1,3 @@
-[submodule "nvim"]
-	path = nvim
-	url = git@github.com:dazemc/nvim_config.git
 [submodule "tmux/.tmux/plugins/tmux-battery"]
 	path = tmux/.tmux/plugins/tmux-battery
 	url = https://github.com/tmux-plugins/tmux-battery.git
