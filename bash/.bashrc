@@ -19,9 +19,11 @@ alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 alias neofetch='clear && neofetch'
 alias htop='btop'
-alias pacconfig='sudo pacman -Qii | awk "/\[modified\]/ {print $(NF - 1)}"'
+alias shsrc='source ~/.bashrc'
+# shows all tracked configs for installed pacakges
+alias pacconfig='sudo pacman -Qii | awk '\''/\[modified\]/ {print $(NF - 1)}'\'''
+# backup pacman package list
 alias pacback='pacman -Qqen > pkglist.txt'
-alias sourcebash='source ~/.bashrc'
 # HYPRLAND
 if [[ -z "$SSH_CONNECTION" && -z "$TMUX" ]] && uwsm check may-start; then
     exec uwsm start hyprland.desktop
