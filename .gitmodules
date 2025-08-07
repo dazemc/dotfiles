@@ -19,3 +19,6 @@
 [submodule "private"]
 	path = private
 	url = git@github.com:dazemc/private_dotfiles.git
+[submodule "nvim"]
+	path = nvim
+	url = git@github.com:dazemc/nvim.git
