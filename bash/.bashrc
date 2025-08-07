@@ -3,8 +3,10 @@
 #
 # ENVAR
 export TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins/
-export LC_ALL=en_US.utf-8
-export LANG=en_US.utf-8
+export LANG=en_US.utf8
+export LC_ALL=en_US.utf8
+export LC_CTYPE=en_US.utf8
+export LC_COLLATE=en_US.utf8
 # Java bullshit
 export _JAVA_OPTIONS="-Xms512m -Xmx2g"
 
@@ -22,6 +24,6 @@ alias pacback='pacman -Qqen > pkglist.txt'
 alias sourcebash='source ~/.bashrc'
 # HYPRLAND
 if [[ -z "$SSH_CONNECTION" && -z "$TMUX" ]] && uwsm check may-start; then
-	exec uwsm start hyprland.desktop
+    exec uwsm start hyprland.desktop
 fi
 
