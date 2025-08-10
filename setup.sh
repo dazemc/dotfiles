@@ -13,7 +13,7 @@ ln -s "$PWD"/spotify-player ~/.config/
 # sudo
 sudo sh -c '
 rm -rf /etc/ssh/ssh_config* /etc/ssh/sshd_config* /etc/pam.d/sshd /root/.config/nvim;
-ln -s $PWD/private/ssh/* /etc/ssh/;
+cp -rf $PWD/private/ssh/* /etc/ssh/;
 ln -s $PWD/private/pam.d/sshd /etc/pam.d/sshd;
 ln -s $PWD/nvim /root/.config/nvim;
 if grep -qi "arch" /etc/os-release; then
