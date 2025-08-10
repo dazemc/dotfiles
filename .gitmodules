@@ -1,24 +1,32 @@
 [submodule "tmux/.tmux/plugins/tmux-battery"]
 	path = tmux/.tmux/plugins/tmux-battery
-	url = https://github.com/tmux-plugins/tmux-battery.git
+  url = https://github.com/tmux-plugins/tmux-battery.git
+  branch = master
 [submodule "tmux/.tmux/plugins/tmux-cpu"]
 	path = tmux/.tmux/plugins/tmux-cpu
 	url = https://github.com/tmux-plugins/tmux-cpu
+  branch = master
 [submodule "tmux/.tmux/plugins/tmux-df"]
 	path = tmux/.tmux/plugins/tmux-df
 	url = https://github.com/tassaron/tmux-df
+  branch = main
 [submodule "tmux/.tmux/plugins/tmux-online-status"]
 	path = tmux/.tmux/plugins/tmux-online-status
 	url = https://github.com/tmux-plugins/tmux-online-status
+  branch = master
 [submodule "tmux/.tmux/plugins/tmux-ping"]
 	path = tmux/.tmux/plugins/tmux-ping
 	url = https://github.com/ayzenquwe/tmux-ping.git
+  branch = master
 [submodule "tmux/.tmux/plugins/tmux-prefix-highlight"]
 	path = tmux/.tmux/plugins/tmux-prefix-highlight
 	url = https://github.com/tmux-plugins/tmux-prefix-highlight
+  branch = master
 [submodule "private"]
 	path = private
 	url = git@github.com:dazemc/private_dotfiles.git
+  branch = master
 [submodule "nvim"]
 	path = nvim
 	url = git@github.com:dazemc/nvim.git
+  branch = master
