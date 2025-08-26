@@ -20,6 +20,8 @@ PS1='[\u@\h \W]\$ '
 alias neofetch='clear && neofetch'
 alias htop='btop'
 alias shsrc='source ~/.bashrc'
+alias realloc='sudo mount -o remount,size=100% /tmp'
+alias dealloc='sudo mount -o remount,size=50% /tmp'
 # shows all tracked configs for installed pacakges
 alias pacconfig='sudo pacman -Qii | awk '\''/\[modified\]/ {print $(NF - 1)}'\'''
 # backup pacman package list
@@ -30,3 +32,5 @@ if [[ -z "$SSH_CONNECTION" && -z "$TMUX" ]] && uwsm check may-start; then
     exec uwsm start hyprland.desktop
 fi
 
+# SOURCE
+source /opt/esp-idf/export.sh
