@@ -33,4 +33,11 @@ if [[ -z "$SSH_CONNECTION" && -z "$TMUX" ]] && uwsm check may-start; then
 fi
 
 # SOURCE
-source /opt/esp-idf/export.sh
+# ESP32
+sourceEsp32='/opt/esp-idf/export.sh'
+if [ -f  $sourceEsp32 ]; then
+    echo "Sourcing ESP32..."
+    source /opt/esp-idf/export.sh
+else
+    echo "ESP32 source missing"
+fi
