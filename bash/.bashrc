@@ -14,7 +14,6 @@ export _JAVA_OPTIONS="-Xms512m -Xmx2g"
 [[ $- != *i* ]] && return
 
 # ALIAS
-alias idf='idf.py'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
@@ -28,6 +27,7 @@ alias pacconfig='sudo pacman -Qii | awk '\''/\[modified\]/ {print $(NF - 1)}'\''
 # backup pacman package list
 alias pacback='pacman -Qqen > pkglist.txt'
 alias spty='spotify_player'
+alias idfstart=idfsource
 # HYPRLAND
 if [[ -z "$SSH_CONNECTION" && -z "$TMUX" ]] && uwsm check may-start; then
     exec uwsm start hyprland.desktop
@@ -35,10 +35,12 @@ fi
 
 # SOURCE
 # ESP32
-sourceEsp32='/opt/esp-idf/export.sh'
-if [ -f  $sourceEsp32 ]; then
-    echo "Sourcing ESP32..."
-    source /opt/esp-idf/export.sh
-else
-    echo "ESP32 source missing"
-fi
+function idfsource () {
+    sourceEsp32='/opt/esp-idf/export.sh'
+    if [ -f  $sourceEsp32 ]; then
+        echo "Sourcing ESP32..."
+        source /opt/esp-idf/export.sh
+    else
+        echo "ESP32 source missing"
+    fi
+}
