@@ -14,6 +14,7 @@ export _JAVA_OPTIONS="-Xms512m -Xmx2g"
 [[ $- != *i* ]] && return
 
 # ALIAS
+alias idf='idf.py'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
