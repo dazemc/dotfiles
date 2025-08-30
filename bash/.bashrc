@@ -28,6 +28,7 @@ alias pacconfig='sudo pacman -Qii | awk '\''/\[modified\]/ {print $(NF - 1)}'\''
 alias pacback='pacman -Qqen > pkglist.txt'
 alias spty='spotify_player'
 alias idfstart=idfsource
+alias lspread='sh ~/GitHub/dotfiles/bash/lsp_util.sh'
 # HYPRLAND
 if [[ -z "$SSH_CONNECTION" && -z "$TMUX" ]] && uwsm check may-start; then
     exec uwsm start hyprland.desktop
