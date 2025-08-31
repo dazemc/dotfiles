@@ -2,6 +2,8 @@
 # ~/.bashrc
 #
 # ENVAR
+# shellcheck disable=SC1090
+source ~/GitHub/dotfiles/private/bash/.env
 export TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins/
 export LANG=en_US.utf8
 export LC_ALL=en_US.utf8
