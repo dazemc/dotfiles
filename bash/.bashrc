@@ -31,6 +31,11 @@ alias pacback='pacman -Qqen > pkglist.txt'
 alias spty='spotify_player'
 alias idfstart=idfsource
 alias lspread='sh ~/GitHub/dotfiles/bash/lsp_util.sh'
+alias dotfiles='cd ~/GitHub/dotfiles/'
+# BAT
+alias man='batman'
+alias batlsblk='lsblk | bat -l conf'
+alias batfree='free -h | bat -l meminfo'
 # HYPRLAND
 if [[ -z "$SSH_CONNECTION" && -z "$TMUX" ]] && uwsm check may-start; then
     exec uwsm start hyprland.desktop
@@ -47,3 +52,4 @@ function idfsource () {
         echo "ESP32 source missing"
     fi
 }
+
