@@ -3,12 +3,17 @@
 #
 # ENVAR
 # shellcheck disable=SC1090
-source ~/GitHub/dotfiles/private/bash/.env
+if [ -f ~/GitHub/dotfiles/private/bash/.env ]; then
+  source ~/GitHub/dotfiles/private/bash/.env
+fi
 export TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins/
 export LANG=en_US.utf8
 export LC_ALL=en_US.utf8
 export LC_CTYPE=en_US.utf8
 export LC_COLLATE=en_US.utf8
+if [ -d "$HOME/.pub-cache/bin" ]; then
+  export PATH="$PATH":"$HOME/.pub-cache/bin"
+fi
 # Java bullshit
 export _JAVA_OPTIONS="-Xms512m -Xmx2g"
 
@@ -38,18 +43,17 @@ alias batlsblk='lsblk | bat -l conf'
 alias batfree='free -h | bat -l meminfo'
 # HYPRLAND
 if [[ -z "$SSH_CONNECTION" && -z "$TMUX" ]] && uwsm check may-start; then
-    exec uwsm start hyprland.desktop
+  exec uwsm start hyprland.desktop
 fi
 
 # SOURCE
 # ESP32
-function idfsource () {
-    sourceEsp32='/opt/esp-idf/export.sh'
-    if [ -f  $sourceEsp32 ]; then
-        echo "Sourcing ESP32..."
-        source /opt/esp-idf/export.sh
-    else
-        echo "ESP32 source missing"
-    fi
+function idfsource() {
+  sourceEsp32='/opt/esp-idf/export.sh'
+  if [ -f $sourceEsp32 ]; then
+    echo "Sourcing ESP32..."
+    source /opt/esp-idf/export.sh
+  else
+    echo "ESP32 source missing"
+  fi
 }
-
