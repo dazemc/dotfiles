@@ -21,9 +21,8 @@ git add .
 
 # Commit if there are changes
 if ! git diff --cached --quiet; then
-    git commit -m 'Update submodules to latest'
-    git push
+  git commit -m 'Update submodules to latest'
+  git push
 else
-    echo "No submodule updates found."
+  echo "No submodule updates found."
 fi
-
