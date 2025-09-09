@@ -7,38 +7,18 @@ CONFIG_LIST=(
   "spotify"
 )
 
-CONFIG_PREPARE=(
+CONFIG_LOCATION=(
   "$HOME/.bashrc"
   "$HOME/.tmux"
   "$HOME/.tmux.conf"
-  "$HOME/.config/nvim/"
-  "$HOME/.config/spotify-player/"
+  "$HOME/.config/nvim"
+  "$HOME/.config/spotify-player"
 )
 
-function deleteIfFileOrDir() {
-  #TODO: backup
-  if [ -f "$1" ]; then
-    echo "Deleting pre-existing configuration files for: $1"
-    rm -rf "$1"
-  elif [ -d "$1" ]; then
-    echo "Deleting pre-existing configuration directories for: $1"
-    rm -rf "$1"
-  fi
-}
-
-function prepareConfigLocation() {
-  echo "Preparing configuration at $config"
-  if [ -f "$1" ]; then
-    touch "$1"
-  elif [ -d "$1" ]; then
-    mkdir -p "$1"
-  fi
-}
-
 function clearExistingConfig {
-  for config in "${CONFIG_PREPARE[@]}"; do
-    deleteIfFileOrDir "$config"
-    prepareConfigLocation "$config"
+  for config in "${CONFIG_LOCATION[@]}"; do
+    echo "Deleting: $config"
+    rm -rf "$config"
   done
 }
 
@@ -63,7 +43,7 @@ function linkDirectories {
 }
 
 function runPrivateScript {
-  sudo sh -c './private/setup.sh'
+  sudo bash './private/setup.sh'
 }
 
 function postSetup {
