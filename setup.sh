@@ -5,6 +5,7 @@ CONFIG_LIST=(
   "tmux"
   "neovim"
   "spotify"
+  "msmtp"
 )
 
 CONFIG_LOCATION=(
@@ -13,6 +14,7 @@ CONFIG_LOCATION=(
   "$HOME/.tmux.conf"
   "$HOME/.config/nvim"
   "$HOME/.config/spotify-player"
+  "$HOME/.config/msmtp"
 )
 
 function clearExistingConfig {
@@ -38,6 +40,10 @@ function linkDirectories {
     "spotify")
       ln -s "$PWD/spotify-player/" "$HOME/.config/"
       ;;
+    "msmtp")
+      ln -s "$PWD/msmtp/" "$HOME/.config/"
+      ;;
+
     esac
   done
 }
