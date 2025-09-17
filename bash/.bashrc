@@ -6,6 +6,9 @@
 if [ -f ~/GitHub/dotfiles/private/bash/.env ]; then
   source ~/GitHub/dotfiles/private/bash/.env
 fi
+if [ -f ~/.pub-cache/bin ]; then
+  export PATH="$PATH":"$HOME/.pub-cache/bin"
+fi
 export TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins/
 export LANG=en_US.utf8
 export LC_ALL=en_US.utf8
