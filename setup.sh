@@ -6,6 +6,8 @@ CONFIG_LIST=(
   "neovim"
   "spotify"
   "msmtp"
+  "hyprland"
+  "waybar"
 )
 
 CONFIG_LOCATION=(
@@ -15,7 +17,15 @@ CONFIG_LOCATION=(
   "$HOME/.config/nvim"
   "$HOME/.config/spotify-player"
   "$HOME/.config/msmtp"
+  "$HOME/.config/hypr/"
+  "$HOME/.config/waybar/"
 )
+
+function setGitGlobals {
+  git config --global user.email "daazedjmcfarland@gmail.com"
+  git config --global user.name "Daazed J McFarland"
+
+}
 
 function clearExistingConfig {
   for config in "${CONFIG_LOCATION[@]}"; do
@@ -41,9 +51,15 @@ function linkDirectories {
       ln -s "$PWD/spotify-player/" "$HOME/.config/"
       ;;
     "msmtp")
-      ln -s "$PWD/msmtp/" "$HOME/.config/"
+      mkdir -p "$HOME/.config/msmtp/"
+      ln -s "$PWD/msmtp/config" "$HOME/.config/msmtp/"
       ;;
-
+    "hyprland")
+      ln -s "$PWD/hyprland/hypr/" "$HOME/.config/"
+      ;;
+    "waybar")
+      ln -s "$PWD/waybar/" "$HOME/.config/"
+      ;;
     esac
   done
 }
@@ -60,6 +76,7 @@ function postSetup {
 }
 
 function main {
+  setGitGlobals
   clearExistingConfig
   linkDirectories
   runPrivateScript
