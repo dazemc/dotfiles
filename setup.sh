@@ -10,6 +10,7 @@ CONFIG_LIST=(
   "waybar"
 )
 
+# do not leave a trailing slash as that will resolve the symlink back to the dotfiles dir
 CONFIG_LOCATION=(
   "$HOME/.bashrc"
   "$HOME/.tmux"
@@ -17,8 +18,8 @@ CONFIG_LOCATION=(
   "$HOME/.config/nvim"
   "$HOME/.config/spotify-player"
   "$HOME/.config/msmtp"
-  "$HOME/.config/hypr/"
-  "$HOME/.config/waybar/"
+  "$HOME/.config/hypr"
+  "$HOME/.config/waybar"
 )
 
 function setGitGlobals {
