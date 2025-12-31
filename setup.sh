@@ -36,11 +36,12 @@ function clearExistingConfig {
 }
 
 function linkDirectories {
+  ln -sf "$PWD/shell/.alias" "$HOME/.alias"
   for config in "${CONFIG_LIST[@]}"; do
     echo "Linking configuration for $config"
     case $config in
     "bash")
-      ln -s "$PWD/bash/.bashrc" "$HOME/.bashrc"
+      ln -s "$PWD/shell/bash/.bashrc" "$HOME/.bashrc"
       ;;
     "neovim")
       ln -s "$PWD/nvim" "$HOME/.config/"

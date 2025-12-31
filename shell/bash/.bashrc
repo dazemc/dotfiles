@@ -3,6 +3,7 @@
 #
 # ENVAR
 # shellcheck disable=SC1090
+source ~/.alias
 if [ -f ~/GitHub/dotfiles/private/bash/.env ]; then
   source ~/GitHub/dotfiles/private/bash/.env
 fi
@@ -21,26 +22,6 @@ export _JAVA_OPTIONS="-Xms512m -Xmx2g"
 [[ $- != *i* ]] && return
 
 # ALIAS
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-PS1='[\u@\h \W]\$ '
-alias neofetch='clear && neofetch'
-alias htop='btop'
-alias shsrc='source ~/.bashrc'
-alias realloc='sudo mount -o remount,size=100% /tmp'
-alias dealloc='sudo mount -o remount,size=50% /tmp'
-# shows all tracked configs for installed pacakges
-alias pacconfig='sudo pacman -Qii | awk '\''/\[modified\]/ {print $(NF - 1)}'\'''
-# backup pacman package list
-alias pacback='pacman -Qqen > pkglist.txt'
-alias spty='spotify_player'
-alias idfstart=idfsource
-alias lspread='sh ~/GitHub/dotfiles/bash/lsp_util.sh'
-alias dotfiles='cd ~/GitHub/dotfiles/'
-# BAT
-alias man='batman'
-alias batlsblk='lsblk | bat -l conf'
-alias batfree='free -h | bat -l meminfo'
 # HYPRLAND
 if [[ -z "$SSH_CONNECTION" && -z "$TMUX" ]] && uwsm check may-start; then
   exec uwsm start hyprland.desktop
