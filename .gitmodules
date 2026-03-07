@@ -26,6 +26,3 @@
 	path = private
 	url = git@github.com:dazemc/private_dotfiles.git
   branch = master
-[submodule "nvim"]
-	path = nvim
-	url = https://github.com/dazemc/nvim.git
