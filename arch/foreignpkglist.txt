@@ -1,13 +1,4 @@
-aura
-aura-bin-debug
 bridge-utils
-bridge-utils-debug
-gamescope-plus
-gamescope-plus-debug
 hyprshutdown
-hyprshutdown-debug
-neovim-git-debug
 steamtinkerlaunch-git
-tree-sitter-git-debug
-ventoy-bin-debug
 woeusb

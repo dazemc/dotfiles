@@ -1,13 +1,11 @@
 7zip
 arch-install-scripts
 aura
-aura-bin-debug
 base
 base-devel
 bash-completion
 bash-language-server
 bridge-utils
-bridge-utils-debug
 btop
 clang
 dhcpcd
@@ -17,8 +15,6 @@ dolphin
 efibootmgr
 fd
 firefox
-gamescope-plus
-gamescope-plus-debug
 ghostscript
 git
 greetd
@@ -26,7 +22,6 @@ hyprland
 hyprpaper
 hyprpolkitagent
 hyprshutdown
-hyprshutdown-debug
 imagemagick
 kitty
 lazygit
@@ -40,7 +35,6 @@ mdadm
 mermaid-cli
 mesa-utils
 neovim
-neovim-git-debug
 npm
 nvidia-open-dkms
 ollama
@@ -67,12 +61,10 @@ texlive-bin
 tmux
 tree-sitter
 tree-sitter-cli
-tree-sitter-git-debug
 ttf-jetbrains-mono
 ttf-jetbrains-mono-nerd
 unzip
 uwsm
-ventoy-bin-debug
 waybar
 wget
 wl-clipboard
