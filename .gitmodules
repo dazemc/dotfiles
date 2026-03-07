@@ -29,4 +29,3 @@
 [submodule "nvim"]
 	path = nvim
 	url = https://github.com/dazemc/nvim.git
-  branch = master
