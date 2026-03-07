@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Ensure submodules are initialized
-git submodule init
+git submodule update --init --recursive
 
 # Update each submodule to its configured branch
 git submodule foreach "
@@ -16,13 +16,3 @@ git submodule foreach "
   git pull --ff-only origin \$branch
 "
 
-# Stage updated submodule SHAs in the superproject
-git add .
-
-# Commit if there are changes
-if ! git diff --cached --quiet; then
-  git commit -m 'Update submodules to latest'
-  git push
-else
-  echo "No submodule updates found."
-fi
