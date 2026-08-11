@@ -11,7 +11,7 @@ bar_length=${#bar}
 
 # Create dictionary to replace char with bar
 for ((i = 0; i < bar_length; i++)); do
-    dict+=";s/$i/${bar:$i:1}/g"
+  dict+=";s/$i/${bar:$i:1}/g"
 done
 
 # Create cava config
@@ -21,8 +21,8 @@ cat >"$config_file" <<EOF
 # Older systems show significant CPU use with default framerate
 # Setting maximum framerate to 30  
 # You can increase the value if you wish
-framerate = 60
-bars = 14
+framerate = 120
+bars = 28
 
 [input]
 method = pulse

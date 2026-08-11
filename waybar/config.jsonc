@@ -21,7 +21,7 @@
   
   "modules-right": [
     "idle_inhibitor",
-    "battery",
+    // "battery",
     "hyprland/language",
     "keyboard-state",
     "backlight",

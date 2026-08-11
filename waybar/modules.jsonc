@@ -51,23 +51,23 @@
     "format": "♪ {}",
     "on-click-middle": "playerctl play-pause",
     "on-click-right": "playerctl next",
-    "on-click-left": "playerctl previous"
+    "on-click": "playerctl previous"
   },
 
   // Memory / CPU / Temp
   "memory": {
-    "format": " {: >3}%",
-    "on-click": "NeoHtop"
+    "format": "󰍛 {: >3}%",
+    "on-click": "kitty btop"
   },
   "cpu": {
     "format": "󰘚 {usage: >3}%",
-    "on-click": "NeoHtop"
+    "on-click": "kitty btop"
   },
   "temperature": {
     "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
     "critical-threshold": 80,
     "format": "  {temperatureC}°C",
-    "on-click": "NeoHtop"
+    "on-click": "kitty btop"
   },
 
   // Idle inhibitor
