@@ -47,3 +47,36 @@ hl.window_rule({
   move = "20 monitor_h-120",
   float = true,
 })
+
+hl.window_rule({
+  match = {
+    class = "spotify"
+  },
+  workspace = "5 silent"
+})
+
+hl.window_rule({
+  match = {
+    class = "firefox"
+  },
+  workspace = "3"
+})
+
+hl.window_rule({
+  match = {
+    class = "kitty"
+  },
+  workspace = "2"
+})
+
+hl.window_rule({
+  match = {
+    class = "btop"
+  },
+  workspace = 4
+})
+
+hl.workspace_rule({
+  workspace = "1",
+  default = true,
+})
