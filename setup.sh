@@ -8,6 +8,7 @@ CONFIG_LIST=(
   "msmtp"
   "hyprland"
   "waybar"
+  "enviroment.d"
 )
 
 # do not leave a trailing slash as that will resolve the symlink back to the dotfiles dir
@@ -20,6 +21,7 @@ CONFIG_LOCATION=(
   "$HOME/.config/msmtp"
   "$HOME/.config/hypr"
   "$HOME/.config/waybar"
+  "$HOME/.config/enviroment.d/"
 )
 
 function setGitGlobals {
@@ -61,6 +63,9 @@ function linkDirectories {
       ;;
     "waybar")
       ln -s "$PWD/waybar/" "$HOME/.config/"
+      ;;
+    "environment.d")
+      ln -s "$PWD/environment.d/" "$HOME/.config"
       ;;
     esac
   done
