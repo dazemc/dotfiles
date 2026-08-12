@@ -76,6 +76,20 @@ hl.window_rule({
   workspace = 4
 })
 
+hl.window_rule({
+  match = {
+    class = "steam"
+  },
+  workspace = 1
+})
+
+-- this will launch all steam(gamescope) games on workspace 9
+hl.window_rule({
+  match = {
+    class = "gamescope"
+  },
+  workspace = 9
+})
 hl.workspace_rule({
   workspace = "1",
   default = true,
