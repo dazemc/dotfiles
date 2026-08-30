@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if pactl list sink-inputs | grep -q 'Corked: no'; then
+  exit 1
+else
+  exit 0
+fi
