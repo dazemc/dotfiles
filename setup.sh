@@ -7,7 +7,7 @@ CONFIG_LIST=(
   "spotify"
   "msmtp"
   "hyprland"
-  "waybar"
+  "quickshell"
   "enviroment.d"
 )
 
@@ -20,7 +20,7 @@ CONFIG_LOCATION=(
   "$HOME/.config/spotify-player"
   "$HOME/.config/msmtp"
   "$HOME/.config/hypr"
-  "$HOME/.config/waybar"
+  "$HOME/.config/quickshell"
   "$HOME/.config/enviroment.d/"
 )
 
@@ -61,8 +61,8 @@ function linkDirectories {
     "hyprland")
       ln -s "$PWD/hyprland/hypr/" "$HOME/.config/"
       ;;
-    "waybar")
-      ln -s "$PWD/waybar/" "$HOME/.config/"
+    "quickshell ")
+      ln -s "$PWD/quickshell/" "$HOME/.config/"
       ;;
     "environment.d")
       ln -s "$PWD/environment.d/" "$HOME/.config"
