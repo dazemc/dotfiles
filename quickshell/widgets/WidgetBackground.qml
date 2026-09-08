@@ -10,7 +10,8 @@ WrapperRectangle {
     rightMargin: 8
     height: Config.widgetContentHeight
     anchors.verticalCenter: parent.verticalCenter
-    radius: Config.widgetRadius
+    bottomLeftRadius: Config.bottomLeftRadius
+    bottomRightRadius: Config.bottomRightRadius
     color: Colors.widget
     gradient: WidgetGradient {}
 }

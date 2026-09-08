@@ -11,5 +11,9 @@ QtObject {
     //widget
     readonly property int widgetContentHeight: 30
     readonly property int widgetRadius: 8
+    readonly property int topLeftRadius: 0
+    readonly property int topRightRadius: 0
+    readonly property int bottomLeftRadius: 8
+    readonly property int bottomRightRadius: 8
     readonly property int widgetMargin: 5
 }

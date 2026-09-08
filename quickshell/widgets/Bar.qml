@@ -12,7 +12,7 @@ Scope {
             screen: modelData
 
             margins {
-                top: Config.barTopMargin
+                // top: Config.barTopMargin
                 left: Config.barLeftMargin
                 right: Config.barRightMargin
                 bottom: Config.barBottomMargin
@@ -26,17 +26,22 @@ Scope {
                 right: true
             }
 
-            StartButton {
-                anchors.verticalCenter: parent.verticalCenter
+            Row {
+                spacing: 5
+                StartButton {}
             }
-
-            WorkspaceWidget {
+            Row {
+                spacing: 5
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
+                WorkspaceWidget {}
             }
-            ClockWidget {
+            Row {
+                spacing: 5
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
+                Pipewire {}
+                ClockWidget {}
             }
         }
     }

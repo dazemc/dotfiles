@@ -17,7 +17,8 @@ Rectangle {
     implicitHeight: 30
     color: "transparent"
     gradient: drun.running ? activeBackground : background
-    radius: Config.widgetRadius
+    bottomRightRadius: Config.bottomRightRadius
+    bottomLeftRadius: Config.bottomLeftRadius
 
     IconImage {
         anchors.fill: parent
