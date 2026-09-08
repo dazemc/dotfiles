@@ -83,8 +83,8 @@ hl.bind(mainMod .. " + SHIFT + ALT + S", hl.dsp.exec_cmd("hyprcap shot window:ac
 hl.bind(mainMod .. " + SHIFT + CTRL + S", hl.dsp.exec_cmd("hyprcap shot -z -c -n -w"))
 -- Recording
 -- Region
-hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("hypercap rec region -c -n -w"))
+hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("hyprcap rec region -c -n -w"))
 -- Window
-hl.bind(mainMod .. " + SHIFT + ALT + R", hl.dsp.exec_cmd("hypercap rec window:active -c -n -w"))
+hl.bind(mainMod .. " + SHIFT + ALT + R", hl.dsp.exec_cmd("hyprcap rec window:active -c -n -w"))
 -- Interactive
-hl.bind(mainMod .. " + SHIFT + CTRL + R", hl.dsp.exec_cmd("hypercap rec -c -n -w"))
+hl.bind(mainMod .. " + SHIFT + CTRL + R", hl.dsp.exec_cmd("hyprcap rec -c -n -w"))
