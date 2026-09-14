@@ -80,6 +80,8 @@ go-ahead (see `.llm/workflow.md`).
   from `/root/dotfiles-backup-*` or fix the repo files and re-run
   `private/setup.sh` (go-ahead required). No secrets or keys are recorded
   here by design.
+- `diagnose.sh` verifies the map read-only (labels, sources, pins,
+  binaries, secrets); run it anytime, no sudo, exit 1 on failure.
 - `arch/`: `pkglist.txt` / `foreignpkglist.txt` are pacman package lists;
   `backup.sh` regenerates them, `install.sh` installs from them (plus an
   AUR helper build). Installing is a go-ahead operation.
