@@ -6,6 +6,6 @@
 return {
   terminal = "kitty",
   fileManager = "dolphin",
-  menu = "rofi -show drun",
+  menu = "rofi -show drun -click-to-exit",
   browser = "firefox",
 }
