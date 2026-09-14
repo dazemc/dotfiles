@@ -29,5 +29,7 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 
 ## Open suggestions
 
-No open suggestions — the queue was walked with the user and every entry
-was dismissed or escalated to `.llm/todo.md`.
+- **trickster bar is WIP, not queue work yet.** `~/GitHub/trickster` will
+  replace `waybar/` and `quickshell/`, but it is still under construction.
+  Leave both legacy bars untouched until it ships; re-escalate the landing
+  (autostart + link map + retire legacy) when it runs.
