@@ -17,9 +17,5 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
 
 ## Authorized work
 
-1. [S] Add a pacman hook that refreshes the package lists. `arch/backup.sh`
-   only runs manually, so the lists rot. Ship an alpm hook + helper script
-   (placed via `private/`, needs sudo) that regenerates `pkglist.txt` /
-   `foreignpkglist.txt` after transactions. Done when a test transaction
-   updates the lists with no manual run. Hook install waits for go-ahead;
-   never touch the live pacman setup to verify.
+No steps authorized — the queue is landed. `working` carries the private
+pin move; merging it waits for the user's go-ahead.
