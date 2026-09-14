@@ -17,6 +17,9 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
 
 ## Authorized work
 
-No steps authorized yet. The queue is empty by design: governance landed
-first, work gets proposed via `.llm/suggestions.md` and escalated here by
-the user, one step at a time.
+1. [S] Back up live config in `setup.sh` instead of deleting. Replace the
+   `rm -rf` of `~/.bashrc`, `~/.tmux*`, `~/.config/nvim|hypr|…` in
+   `clearExistingConfig` with a move to a timestamped backup dir, and keep
+   the go-ahead rule. Done when a dry run shows every live path either
+   relinked or present in the backup, verified with `bash -n` and without
+   running `setup.sh` on the live session.
