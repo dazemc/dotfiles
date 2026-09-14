@@ -60,12 +60,17 @@ go-ahead (see `.llm/workflow.md`).
 - nvim: owned upstream (`lazy.nvim`-based). This repo only pins the commit;
   edits belong in the nvim repository.
 - msmtp: `msmtp/config` (gmail account) requires exactly two env vars:
-  `SMTP_USER` (`from`/`user`) and `SMTP_PASS` (`passwordeval`). Values live
-  in `msmtp/smtp.env` (gitignored, local-only) and/or `private/bash/.env`
-  (sourced by `.bashrc` when present); per-var attribution is unverified
-  by policy. Refer to both files by name only — never read them.
+  `SMTP_USER` (`from`/`user`) and `SMTP_PASS` (`passwordeval`). `SMTP_USER`
+  comes from `msmtp/smtp.env` (gitignored, hardlinked to `~/.config/msmtp/`
+  by `private/setup.sh`) or the shell env; `SMTP_PASS` comes only from the
+  shell env via `private/bash/.env` (sourced by `.bashrc` when present).
+  Verified by name; values never read, never commit them.
 - `private/`: machine-specific secrets and system config, applied by
-  `private/setup.sh` under sudo. Never read, never run without a go-ahead.
+  `private/setup.sh` under sudo. Readable for verification; never run
+  without a go-ahead, never print or commit secrets. `bash/.env` exports
+  `SMTP_USER`/`SMTP_PASS` (plus other machine creds); `msmtp/smtp.env`
+  provides `SMTP_USER` and is hardlinked into `~/.config/msmtp/` by
+  `private/setup.sh`.
 - `arch/`: `pkglist.txt` / `foreignpkglist.txt` are pacman package lists;
   `backup.sh` regenerates them, `install.sh` installs from them (plus an
   AUR helper build). Installing is a go-ahead operation.
