@@ -29,9 +29,6 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 
 ## Open suggestions
 
-- **tmux links via a `.*` glob.** `ln -s "$PWD"/tmux/.* "$HOME/"` also matches
-  `.`/`..` and any future dotfile in `tmux/`, so one stray file can break or
-  mislink home. Link the two known paths (`~/.tmux`, `~/.tmux.conf`) explicitly.
 - **`waybar/` is dead config with no marker.** Git log and autostart (`qs`)
   show Quickshell replaced it, but nothing in the tree says so — the next edit
   may "fix" the wrong bar. Confirm Quickshell parity, then delete `waybar/` or

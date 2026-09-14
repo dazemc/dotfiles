@@ -23,3 +23,7 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
    the go-ahead rule. Done when a dry run shows every live path either
    relinked or present in the backup, verified with `bash -n` and without
    running `setup.sh` on the live session.
+2. [S] Link tmux paths explicitly in `setup.sh`. Replace the `tmux/.*` glob
+   with direct links for `~/.tmux` and `~/.tmux.conf`. Done when a fresh-
+   shell check shows both links resolving and `tmux source-file
+   ~/.tmux.conf` succeeds without touching home.
