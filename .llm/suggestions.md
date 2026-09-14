@@ -29,10 +29,6 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 
 ## Open suggestions
 
-- **`waybar/` is dead config with no marker.** Git log and autostart (`qs`)
-  show Quickshell replaced it, but nothing in the tree says so — the next edit
-  may "fix" the wrong bar. Confirm Quickshell parity, then delete `waybar/` or
-  leave a one-line legacy pointer, and record the decision here.
 - **`shell/zsh/.zshrc` is unlinked and macOS-specific.** `setup.sh` never links
   it and its `PATH` is Homebrew/macOS, so it cannot be live on this Arch box.
   Either wire it into the link map with Linux paths or delete it; do not edit it as live.
