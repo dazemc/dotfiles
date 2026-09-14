@@ -29,10 +29,6 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 
 ## Open suggestions
 
-- **Backups have no restore path.** `setup.sh` and `private/setup.sh` now
-  move replaced config to timestamped dirs, but nothing can put them back.
-  Add a restore step (re-link from a chosen backup dir) under the same
-  go-ahead rule, before the first real backup is ever needed.
 - **trickster bar is WIP, not queue work yet.** `~/GitHub/trickster` will
   replace `waybar/` and `quickshell/`, but it is still under construction.
   Leave both legacy bars untouched until it ships; re-escalate the landing
