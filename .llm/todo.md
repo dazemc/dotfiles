@@ -17,8 +17,5 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
 
 ## Authorized work
 
-1. [S] Record the SSH access recipe and recovery path. `sshd_config` runs
-   PAM-only auth on port 2020 for `daze` with no fallback, and the live
-   files are overwritten by script. Write down the working login flow
-   plus how to recover from a lockout (no secrets, no keys). Done when a
-   locked-out admin can get back in following the doc alone.
+No steps authorized — the queue is landed. `working` carries the phase
+config; merging it waits for the user's go-ahead.
