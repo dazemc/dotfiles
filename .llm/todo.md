@@ -27,3 +27,7 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
    with direct links for `~/.tmux` and `~/.tmux.conf`. Done when a fresh-
    shell check shows both links resolving and `tmux source-file
    ~/.tmux.conf` succeeds without touching home.
+3. [S] Settle the `waybar/` legacy decision. Confirm Quickshell parity with
+   the old bar, then delete `waybar/` or leave a one-line legacy pointer
+   and record the call. Done when the tree names the live bar in exactly
+   one place.
