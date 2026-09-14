@@ -29,9 +29,6 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 
 ## Open suggestions
 
-- **`shell/zsh/.zshrc` is unlinked and macOS-specific.** `setup.sh` never links
-  it and its `PATH` is Homebrew/macOS, so it cannot be live on this Arch box.
-  Either wire it into the link map with Linux paths or delete it; do not edit it as live.
 - **Stale paths from an older layout.** `.alias` `lspread` points at
   `~/GitHub/dotfiles/bash/lsp_util.sh` (real path: `shell/bash/lsp_util.sh`);
   `enviroment.d/99-hyperland.conf` hardcodes `/home/username/...` and both dir

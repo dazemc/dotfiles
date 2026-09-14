@@ -27,7 +27,13 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
    with direct links for `~/.tmux` and `~/.tmux.conf`. Done when a fresh-
    shell check shows both links resolving and `tmux source-file
    ~/.tmux.conf` succeeds without touching home.
-3. [S] Settle the `waybar/` legacy decision. Confirm Quickshell parity with
-   the old bar, then delete `waybar/` or leave a one-line legacy pointer
-   and record the call. Done when the tree names the live bar in exactly
-   one place.
+3. [S] Land `trickster` (`~/GitHub/trickster`, WIP) as the live bar. It
+   replaces both `waybar/` and `quickshell/`; until it ships, leave both
+   untouched. Wire it into autostart and the link map, then delete the
+   legacy bars or leave one-line pointers. Done when the running session
+   shows exactly one live bar launched from autostart.
+4. [S] Wire `shell/zsh/.zshrc` per OS in `setup.sh`. It is macOS-only
+   (Homebrew paths) and never linked — `setup.sh` detects the OS and
+   links it on macOS, skips on Arch. Done when a dry run links it only
+   on macOS, verified with `bash -n` and without running `setup.sh`
+   on the live session.
