@@ -29,10 +29,6 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 
 ## Open suggestions
 
-- **`clearExistingConfig` deletes live config with no backup.** `setup.sh`
-  `rm -rf`s `~/.bashrc`, `~/.tmux*`, `~/.config/nvim|hypr|…` before relinking,
-  and combined with the dead branches above it can delete paths it never
-  restores. Back up (timestamped dir) instead of deleting, and keep the go-ahead rule.
 - **tmux links via a `.*` glob.** `ln -s "$PWD"/tmux/.* "$HOME/"` also matches
   `.`/`..` and any future dotfile in `tmux/`, so one stray file can break or
   mislink home. Link the two known paths (`~/.tmux`, `~/.tmux.conf`) explicitly.
