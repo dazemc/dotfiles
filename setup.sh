@@ -30,10 +30,21 @@ function setGitGlobals {
 
 }
 
+# setup.sh deletes and relinks live paths (plus a sudo private script).
+# It runs only with the user's explicit go-ahead in chat — never as
+# verification for another step.
 function clearExistingConfig {
+  local backup_dir
+  backup_dir="$HOME/.config/dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
+  mkdir -p "$backup_dir"
+  echo "Backing up existing config to: $backup_dir"
   for config in "${CONFIG_LOCATION[@]}"; do
-    echo "Deleting: $config"
-    rm -rf "$config"
+    if [[ -e "$config" || -L "$config" ]]; then
+      echo "Moving: $config -> $backup_dir/"
+      mv "$config" "$backup_dir/"
+    else
+      echo "Skipping (not present): $config"
+    fi
   done
 }
 
