@@ -29,6 +29,14 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 
 ## Open suggestions
 
+- **private/setup.sh deletes system config with no backup.** It `rm -rf`s
+  `/etc/ssh/ssh_config*`, `/etc/ssh/sshd_config*`, `/etc/pam.d/sshd`, and
+  `/root/.config/nvim` before copying/linking replacements — the same
+  hazard class as the fixed `clearExistingConfig`. Back up (timestamped
+  dir) instead of deleting, and keep the go-ahead rule.
+- **private/setup.sh hardcodes /home/daze.** The `smtp.env` link target
+  assumes the Arch username, cutting against the per-OS direction (macOS
+  homes differ). Resolve the home dir from the environment instead.
 - **trickster bar is WIP, not queue work yet.** `~/GitHub/trickster` will
   replace `waybar/` and `quickshell/`, but it is still under construction.
   Leave both legacy bars untouched until it ships; re-escalate the landing
