@@ -27,3 +27,7 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
    `HYPRSHOT_DIR`; `hyprcap` reads neither. Delete both or pass one
    through the binds with `-o`. Done when exactly one source of truth
    exists and a test capture lands in the expected dir.
+3. [S] Fix the tmux `w` window name. `tmux/.tmux.conf` binds `w` to
+   `new-window -n '%%'`, but `%%` only expands inside `command-prompt`.
+   Drop the `-n` flag or prompt for a name. Done when a fresh `w` window
+   carries a sane name, checked with `tmux source-file ~/.tmux.conf`.
