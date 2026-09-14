@@ -22,3 +22,8 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
    `scripts/hypridle-dpms-off`, keeping the Lua (`hl.dsp.dpms` verified
    present). Done when eval asserts pass on the edited lines and the user
    confirms idle dim, DPMS-off, and resume on the live session.
+2. [S] Resolve the dead screenshot-dir vars. `conf/envars.lua` sets
+   `HYPERSHOT_DIR` while `enviroment.d/99-hyperland.conf` sets
+   `HYPRSHOT_DIR`; `hyprcap` reads neither. Delete both or pass one
+   through the binds with `-o`. Done when exactly one source of truth
+   exists and a test capture lands in the expected dir.
