@@ -29,6 +29,10 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 
 ## Open suggestions
 
+- **pacman hook to refresh package lists.** `arch/backup.sh` only runs
+  manually, so `pkglist.txt` rots between runs. Add an alpm hook that
+  regenerates the lists after every transaction. Decide hook + script
+  placement (`private/`, needs sudo) and keep the go-ahead rule.
 - **trickster bar is WIP, not queue work yet.** `~/GitHub/trickster` will
   replace `waybar/` and `quickshell/`, but it is still under construction.
   Leave both legacy bars untouched until it ships; re-escalate the landing
