@@ -29,9 +29,6 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 
 ## Open suggestions
 
-- **private/setup.sh hardcodes /home/daze.** The `smtp.env` link target
-  assumes the Arch username, cutting against the per-OS direction (macOS
-  homes differ). Resolve the home dir from the environment instead.
 - **trickster bar is WIP, not queue work yet.** `~/GitHub/trickster` will
   replace `waybar/` and `quickshell/`, but it is still under construction.
   Leave both legacy bars untouched until it ships; re-escalate the landing
