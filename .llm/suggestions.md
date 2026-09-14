@@ -29,10 +29,6 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 
 ## Open suggestions
 
-- **Stale paths from an older layout.** `.alias` `lspread` points at
-  `~/GitHub/dotfiles/bash/lsp_util.sh` (real path: `shell/bash/lsp_util.sh`);
-  `enviroment.d/99-hyperland.conf` hardcodes `/home/username/...` and both dir
-  and file names are misspelled. Fix the paths when the link map is repaired.
 - **`nvim` submodule has no branch pin.** `.gitmodules` omits `branch =` for
   `nvim`, so `update.sh` falls back to assuming `master` — wrong if upstream's
   default differs, and the failure aborts under `set -euo pipefail`. Pin the
