@@ -17,8 +17,5 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
 
 ## Authorized work
 
-1. [S] Add a restore path for the backup dirs. `setup.sh` and
-   `private/setup.sh` move replaced config to timestamped dirs with no
-   way back. Ship a restore step (re-link from a chosen backup dir)
-   under the same go-ahead rule. Done when a dry run restores every link
-   from a fixture backup without touching home.
+No steps authorized — the queue is landed. `working` carries the phase
+config; merging it waits for the user's go-ahead.

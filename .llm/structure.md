@@ -82,6 +82,9 @@ go-ahead (see `.llm/workflow.md`).
   here by design.
 - `diagnose.sh` verifies the map read-only (labels, sources, pins,
   binaries, secrets); run it anytime, no sudo, exit 1 on failure.
+- `restore.sh [--dry-run] <backup-dir>` puts back config `setup.sh` moved
+  aside; real runs need a go-ahead, dry runs anytime. System backups under
+  `/root/` stay manual.
 - `arch/`: `pkglist.txt` / `foreignpkglist.txt` are pacman package lists;
   `backup.sh` regenerates them, `install.sh` installs from them (plus an
   AUR helper build). Installing is a go-ahead operation.
