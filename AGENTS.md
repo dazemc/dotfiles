@@ -68,8 +68,9 @@ them. Do not let the queue rot.
 - Not an installer distribution. `setup.sh` and `arch/install.sh` assume
   Arch Linux and this checkout layout; do not generalize them to other
   distros or turn them into interactive wizards.
-- Not a secrets store. `msmtp/smtp.env` is gitignored and `private/` is a
-  separate repository. Never read, print, or commit credentials.
+- Not a public store. `msmtp/smtp.env` is gitignored and `private/` is a
+  separate repository. Contents may be read for verification; never print
+  or commit credentials, tokens, or mail auth.
 - Not Waybar. `waybar/` is legacy config kept beside the live Quickshell
   bar. Do not extend it, wire it into autostart, or treat it as live.
 - Not a copy-based config. The live system reads these files through
@@ -193,9 +194,11 @@ from that.
 - Never touch `arch/install.sh` behavior without a go-ahead: it installs
   system packages and builds an AUR helper. Reading the package lists is
   fine; installing from them is not, until asked.
-- Privacy is safety: never read, print, summarize, or commit the contents
-  of `private/` or `msmtp/smtp.env`. Refer to them by name only. Never
-  commit any file containing credentials, tokens, or mail auth.
+- Private is readable, secrets are not committable: traversing and reading
+  `private/` and `msmtp/smtp.env` is allowed for verification and link-map
+  work. Never print secrets (credentials, tokens, mail auth) into chat or
+  logs, and never commit any file containing them. Running
+  `private/setup.sh` still needs the user's explicit go-ahead in chat.
 
 ## Verify
 
