@@ -29,10 +29,6 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 
 ## Open suggestions
 
-- **setup.sh never links quickshell or enviroment.d.** `linkDirectories` case
-  labels `"quickshell "` (trailing space) and `"environment.d"` never match
-  `CONFIG_LIST` entries `"quickshell"` / `"enviroment.d"`, so a fresh install
-  silently ships no bar config and no env vars. Fix the labels to match the list.
 - **`clearExistingConfig` deletes live config with no backup.** `setup.sh`
   `rm -rf`s `~/.bashrc`, `~/.tmux*`, `~/.config/nvim|hypr|…` before relinking,
   and combined with the dead branches above it can delete paths it never
