@@ -29,10 +29,6 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 
 ## Open suggestions
 
-- **`nvim` submodule has no branch pin.** `.gitmodules` omits `branch =` for
-  `nvim`, so `update.sh` falls back to assuming `master` — wrong if upstream's
-  default differs, and the failure aborts under `set -euo pipefail`. Pin the
-  real default branch like every other submodule.
 - **msmtp auth has no documented provider.** `msmtp/config` needs env vars whose
   only sources are `msmtp/smtp.env` (gitignored) and `private/bash/.env`
   (unreadable by policy), so no agent can verify mail config end-to-end.
