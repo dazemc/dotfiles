@@ -29,10 +29,6 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 
 ## Open suggestions
 
-- **msmtp auth has no documented provider.** `msmtp/config` needs env vars whose
-  only sources are `msmtp/smtp.env` (gitignored) and `private/bash/.env`
-  (unreadable by policy), so no agent can verify mail config end-to-end.
-  Document which file provides what (names only) in `.llm/structure.md`.
 - **README documents nothing.** It holds one submodule command; install order
   (submodule init → `setup.sh` → sudo `private/setup.sh`), `update.sh`, and
   `arch/` scripts are undiscoverable. Write the 10-line install/verify order

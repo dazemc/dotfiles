@@ -46,3 +46,8 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
    so `update.sh` guesses `master` and aborts under `set -euo pipefail` when
    wrong. Done when `git submodule update --init nvim` resolves cleanly
    against the pinned branch.
+7. [S] Document the msmtp auth providers by name in `.llm/structure.md`.
+   `msmtp/config` needs env vars from `msmtp/smtp.env` (gitignored) and
+   `private/bash/.env` — record which file provides what, names only,
+   never values. Done when an agent can trace every required var to its
+   source file without reading secrets.
