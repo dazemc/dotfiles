@@ -37,3 +37,8 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
    links it on macOS, skips on Arch. Done when a dry run links it only
    on macOS, verified with `bash -n` and without running `setup.sh`
    on the live session.
+5. [S] Fix stale paths from the older layout. Correct the `lspread` alias
+   to `shell/bash/lsp_util.sh` and replace the hardcoded `/home/username/`
+   in `enviroment.d/99-hyperland.conf` (flag the misspelled dir/file names
+   while there). Done when both paths resolve on the live tree, checked
+   without executing anything.
