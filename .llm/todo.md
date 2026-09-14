@@ -17,5 +17,8 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
 
 ## Authorized work
 
-No steps authorized — the queue is landed. `working` carries the private
-pin move; merging it waits for the user's go-ahead.
+1. [S] Add a read-only `diagnose.sh` for the link map. It checks symlinks
+   resolve, pins resolve, required binaries exist, and no secrets are
+   staged — runnable anytime, no sudo, no go-ahead needed to run.
+   Done when it catches the known-dead label class and passes on the
+   live tree.
