@@ -59,8 +59,11 @@ go-ahead (see `.llm/workflow.md`).
   Do not reintroduce tpm.
 - nvim: owned upstream (`lazy.nvim`-based). This repo only pins the commit;
   edits belong in the nvim repository.
-- msmtp: `msmtp/config` authenticates via env vars; the values live in
-  `msmtp/smtp.env` (gitignored) and `private/`. Refer to both by name only.
+- msmtp: `msmtp/config` (gmail account) requires exactly two env vars:
+  `SMTP_USER` (`from`/`user`) and `SMTP_PASS` (`passwordeval`). Values live
+  in `msmtp/smtp.env` (gitignored, local-only) and/or `private/bash/.env`
+  (sourced by `.bashrc` when present); per-var attribution is unverified
+  by policy. Refer to both files by name only — never read them.
 - `private/`: machine-specific secrets and system config, applied by
   `private/setup.sh` under sudo. Never read, never run without a go-ahead.
 - `arch/`: `pkglist.txt` / `foreignpkglist.txt` are pacman package lists;
