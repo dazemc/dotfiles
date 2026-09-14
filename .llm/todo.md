@@ -17,5 +17,8 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
 
 ## Authorized work
 
-No steps authorized — the queue is landed. `working` carries the private
-pin moves; merging them waits for the user's go-ahead.
+1. [S] Send hypridle DPMS calls via `hyprctl eval`. Replace the `dispatch`
+   vehicle in `hyprland/hypr/hypridle.conf` (dpms-off + 2x resume-on) and
+   `scripts/hypridle-dpms-off`, keeping the Lua (`hl.dsp.dpms` verified
+   present). Done when eval asserts pass on the edited lines and the user
+   confirms idle dim, DPMS-off, and resume on the live session.
