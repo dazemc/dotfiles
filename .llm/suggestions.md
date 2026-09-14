@@ -29,7 +29,5 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 
 ## Open suggestions
 
-- **README documents nothing.** It holds one submodule command; install order
-  (submodule init → `setup.sh` → sudo `private/setup.sh`), `update.sh`, and
-  `arch/` scripts are undiscoverable. Write the 10-line install/verify order
-  before the next fresh checkout has to rediscover it.
+No open suggestions — the queue was walked with the user and every entry
+was dismissed or escalated to `.llm/todo.md`.
