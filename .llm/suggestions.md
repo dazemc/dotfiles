@@ -33,10 +33,6 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
   replace `waybar/` and `quickshell/`, but it is still under construction.
   Leave both legacy bars untouched until it ships; re-escalate the landing
   (autostart + link map + retire legacy) when it runs.
-- **Two dead screenshot-dir vars with mismatched names.** `conf/envars.lua`
-  sets `HYPERSHOT_DIR` while `enviroment.d/99-hyperland.conf` sets
-  `HYPRSHOT_DIR`; `hyprcap` reads neither (takes `-o` or XDG defaults, and
-  the binds pass no `-o`). Delete both or wire one through with `-o`.
 - **tmux `w` names every window literally `%%`.** `tmux/.tmux.conf` binds `w`
   to `new-window -n '%%'`, but `%%` only expands inside `command-prompt`
   (like the `t` bind below it). Drop the `-n` flag or prompt for a name.
