@@ -33,11 +33,6 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
   replace `waybar/` and `quickshell/`, but it is still under construction.
   Leave both legacy bars untouched until it ships; re-escalate the landing
   (autostart + link map + retire legacy) when it runs.
-- **hypridle DPMS calls use the wrong hyprctl vehicle.**
-  `hyprland/hypr/hypridle.conf` and `scripts/hypridle-dpms-off` send Lua
-  (`hl.dsp.dpms(...)`, valid API in 0.56) via `hyprctl dispatch`, which only
-  takes dispatcher names — Lua goes through `hyprctl eval`. Swap the
-  vehicle, keep the code (verified `hl.dsp.dpms` exists via eval asserts).
 - **Two dead screenshot-dir vars with mismatched names.** `conf/envars.lua`
   sets `HYPERSHOT_DIR` while `enviroment.d/99-hyperland.conf` sets
   `HYPRSHOT_DIR`; `hyprcap` reads neither (takes `-o` or XDG defaults, and
