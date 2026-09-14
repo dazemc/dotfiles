@@ -17,8 +17,5 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
 
 ## Authorized work
 
-1. [S] Resolve the home dir from the environment in `private/setup.sh`.
-   The `smtp.env` link target hardcodes `/home/daze`, breaking the per-OS
-   direction. Done when the path builds from `$HOME`/equivalent and a dry
-   read confirms no hardcoded usernames. Note: lands in the `private`
-   submodule repo with a pin move here.
+No steps authorized — the queue is landed. `working` carries the private
+pin moves; merging them waits for the user's go-ahead.
