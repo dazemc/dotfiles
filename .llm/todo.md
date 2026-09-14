@@ -22,3 +22,8 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
    staged — runnable anytime, no sudo, no go-ahead needed to run.
    Done when it catches the known-dead label class and passes on the
    live tree.
+2. [S] Add a restore path for the backup dirs. `setup.sh` and
+   `private/setup.sh` move replaced config to timestamped dirs with no
+   way back. Ship a restore step (re-link from a chosen backup dir)
+   under the same go-ahead rule. Done when a dry run restores every link
+   from a fixture backup without touching home.
