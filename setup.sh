@@ -9,11 +9,13 @@ CONFIG_LIST=(
   "hyprland"
   "quickshell"
   "enviroment.d"
+  "zsh"
 )
 
 # do not leave a trailing slash as that will resolve the symlink back to the dotfiles dir
 CONFIG_LOCATION=(
   "$HOME/.bashrc"
+  "$HOME/.zshrc"
   "$HOME/.tmux"
   "$HOME/.tmux.conf"
   "$HOME/.config/nvim"
@@ -23,6 +25,11 @@ CONFIG_LOCATION=(
   "$HOME/.config/quickshell"
   "$HOME/.config/enviroment.d/"
 )
+
+# setup.sh links per-OS config: this workstation is Arch Linux, while
+# shell/zsh/.zshrc is macOS-only (Homebrew paths). Detect the OS once so
+# each link step can decide what applies.
+OS="$(uname -s)"
 
 function setGitGlobals {
   git config --global user.email "daazedjmcfarland@gmail.com"
@@ -78,6 +85,14 @@ function linkDirectories {
       ;;
     "environment.d")
       ln -s "$PWD/environment.d/" "$HOME/.config"
+      ;;
+    "zsh")
+      # .zshrc is macOS-only; skip it on Linux.
+      if [[ "$OS" == "Darwin" ]]; then
+        ln -s "$PWD/shell/zsh/.zshrc" "$HOME/.zshrc"
+      else
+        echo "Skipping zsh config (macOS-only, OS=$OS)"
+      fi
       ;;
     esac
   done
