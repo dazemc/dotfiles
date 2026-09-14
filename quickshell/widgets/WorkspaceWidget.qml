@@ -38,7 +38,7 @@ Row {
                     family: Fonts.family
                 }
                 text: workspaceButton.modelData.id
-                color: Colors.text
+                color: workspaceButton.modelData.focused ? "black" : Colors.text
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
             }
