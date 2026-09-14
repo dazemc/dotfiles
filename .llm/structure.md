@@ -71,6 +71,15 @@ go-ahead (see `.llm/workflow.md`).
   `SMTP_USER`/`SMTP_PASS` (plus other machine creds); `msmtp/smtp.env`
   provides `SMTP_USER` and is hardlinked into `~/.config/msmtp/` by
   `private/setup.sh`.
+- `private/ssh`: PAM-only access recipe. `sshd` listens on port 2020 for
+  user `daze`: no pubkey, no password — keyboard-interactive TOTP from the
+  enrolled authenticator device (`pam_google_authenticator` first in
+  `pam.d/sshd`, `MaxAuthTries 3`). Login: `ssh -p 2020 daze@<host>`, then
+  the verification code at the prompt. Lockout recovery is local-only:
+  sign in on the machine itself (never over SSH), restore `/etc/ssh/*`
+  from `/root/dotfiles-backup-*` or fix the repo files and re-run
+  `private/setup.sh` (go-ahead required). No secrets or keys are recorded
+  here by design.
 - `arch/`: `pkglist.txt` / `foreignpkglist.txt` are pacman package lists;
   `backup.sh` regenerates them, `install.sh` installs from them (plus an
   AUR helper build). Installing is a go-ahead operation.
