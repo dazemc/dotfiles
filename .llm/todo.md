@@ -17,11 +17,7 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
 
 ## Authorized work
 
-1. [S] Fix the tmux `w` window name. `tmux/.tmux.conf` binds `w` to
-   `new-window -n '%%'`, but `%%` only expands inside `command-prompt`.
-   Drop the `-n` flag or prompt for a name. Done when a fresh `w` window
-   carries a sane name, checked with `tmux source-file ~/.tmux.conf`.
-2. [S] Record the SSH access recipe and recovery path. `sshd_config` runs
+1. [S] Record the SSH access recipe and recovery path. `sshd_config` runs
    PAM-only auth on port 2020 for `daze` with no fallback, and the live
    files are overwritten by script. Write down the working login flow
    plus how to recover from a lockout (no secrets, no keys). Done when a
