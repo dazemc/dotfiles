@@ -4,4 +4,4 @@ if ~/.config/hypr/scripts/audio-playing; then
   exit 0
 fi
 
-hyprctl dispatch 'hl.dsp.dpms({ action = "disable" })'
+hyprctl eval 'hl.dsp.dpms({ action = "disable" })'
