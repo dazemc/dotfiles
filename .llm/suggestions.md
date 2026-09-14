@@ -33,3 +33,19 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
   replace `waybar/` and `quickshell/`, but it is still under construction.
   Leave both legacy bars untouched until it ships; re-escalate the landing
   (autostart + link map + retire legacy) when it runs.
+- **hypridle DPMS commands use Lua DSL inside hyprctl dispatch.**
+  `hyprland/hypr/hypridle.conf` and `scripts/hypridle-dpms-off` call
+  `hyprctl dispatch 'hl.dsp.dpms(...)'` — hyprland.lua API syntax, not a
+  hyprctl dispatcher — so idle DPMS-off and resume DPMS-on fail at runtime.
+  Use `hyprctl dispatch dpms off` / `on`.
+- **Two dead screenshot-dir vars with mismatched names.** `conf/envars.lua`
+  sets `HYPERSHOT_DIR` while `enviroment.d/99-hyperland.conf` sets
+  `HYPRSHOT_DIR`; `hyprcap` reads neither (takes `-o` or XDG defaults, and
+  the binds pass no `-o`). Delete both or wire one through with `-o`.
+- **tmux `w` names every window literally `%%`.** `tmux/.tmux.conf` binds `w`
+  to `new-window -n '%%'`, but `%%` only expands inside `command-prompt`
+  (like the `t` bind below it). Drop the `-n` flag or prompt for a name.
+- **SSH access recipe lives only in the config.** `private/ssh/sshd_config`
+  runs PAM-only auth (no pubkey, no password) on port 2020 for `daze`, and
+  `private/setup.sh` overwrites the live files — a bad edit or PAM failure
+  locks out remote access. Record the login recipe and recovery path.
