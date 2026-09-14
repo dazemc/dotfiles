@@ -60,7 +60,8 @@ function linkDirectories {
       ln -s "$PWD/nvim" "$HOME/.config/"
       ;;
     "tmux")
-      ln -s "$PWD"/tmux/.* "$HOME/"
+      ln -s "$PWD/tmux/.tmux" "$HOME/.tmux"
+      ln -s "$PWD/tmux/.tmux.conf" "$HOME/.tmux.conf"
       ;;
     "spotify")
       ln -s "$PWD/spotify-player/" "$HOME/.config/"
