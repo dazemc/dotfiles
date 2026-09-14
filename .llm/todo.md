@@ -17,21 +17,16 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
 
 ## Authorized work
 
-1. [S] Fix stale paths from the older layout. Correct the `lspread` alias
-   to `shell/bash/lsp_util.sh` and replace the hardcoded `/home/username/`
-   in `enviroment.d/99-hyperland.conf` (flag the misspelled dir/file names
-   while there). Done when both paths resolve on the live tree, checked
-   without executing anything.
-2. [S] Pin the `nvim` submodule branch in `.gitmodules`. It omits `branch =`,
+1. [S] Pin the `nvim` submodule branch in `.gitmodules`. It omits `branch =`,
    so `update.sh` guesses `master` and aborts under `set -euo pipefail` when
    wrong. Done when `git submodule update --init nvim` resolves cleanly
    against the pinned branch.
-3. [S] Document the msmtp auth providers by name in `.llm/structure.md`.
+2. [S] Document the msmtp auth providers by name in `.llm/structure.md`.
    `msmtp/config` needs env vars from `msmtp/smtp.env` (gitignored) and
    `private/bash/.env` — record which file provides what, names only,
    never values. Done when an agent can trace every required var to its
    source file without reading secrets.
-4. [S] Write the README install/verify order. Cover submodule init,
+3. [S] Write the README install/verify order. Cover submodule init,
    `setup.sh`, sudo `private/setup.sh`, `update.sh`, and the `arch/`
    scripts in ~10 lines. Done when a fresh checkout can be reproduced
    from the README alone.
