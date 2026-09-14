@@ -100,6 +100,8 @@ reboot, or power off.
 ## Privacy
 
 `private/` (SSH configs, pam.d, msmtp credentials) and `msmtp/smtp.env`
-are never read, printed, summarized, or committed. Refer to them by name
-only. A change that needs a secret value (msmtp auth, API tokens) stops at
-the variable name and hands the run-and-look step to the user.
+may be read for verification and link-map work. Never print secret values
+into chat or logs, and never commit them. A change that needs a secret
+value (msmtp auth, API tokens) stops at the variable name and hands the
+run-and-look step to the user; `private/setup.sh` still needs the user's
+explicit go-ahead.
