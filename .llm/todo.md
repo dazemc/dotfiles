@@ -17,5 +17,10 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
 
 ## Authorized work
 
-No steps authorized — the queue is landed. `working` carries the phase
-config; merging it waits for the user's go-ahead.
+1. [S] Back up system config in `private/setup.sh` instead of deleting.
+   Replace the `rm -rf` of `/etc/ssh/*`, `/etc/pam.d/sshd`, and
+   `/root/.config/nvim` with a move to a timestamped backup dir, and keep
+   the go-ahead rule (sudo system paths — never run without asking).
+   Done when a dry read shows every target either replaced or present in
+   the backup. Note: the edit lands in the `private` submodule repo with
+   a pin move here.
