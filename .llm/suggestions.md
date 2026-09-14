@@ -29,6 +29,15 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 
 ## Open suggestions
 
+- **No read-only health check for the link map.** The dead `quickshell`
+  link label shipped silently because nothing verifies the map — `setup.sh`
+  is the only consumer and it needs a go-ahead. Add a read-only
+  `diagnose.sh` (symlinks resolve, pins resolve, required binaries present,
+  no secrets staged) runnable anytime without sudo.
+- **Backups have no restore path.** `setup.sh` and `private/setup.sh` now
+  move replaced config to timestamped dirs, but nothing can put them back.
+  Add a restore step (re-link from a chosen backup dir) under the same
+  go-ahead rule, before the first real backup is ever needed.
 - **trickster bar is WIP, not queue work yet.** `~/GitHub/trickster` will
   replace `waybar/` and `quickshell/`, but it is still under construction.
   Leave both legacy bars untouched until it ships; re-escalate the landing
