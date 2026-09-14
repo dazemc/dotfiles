@@ -42,3 +42,7 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
    in `enviroment.d/99-hyperland.conf` (flag the misspelled dir/file names
    while there). Done when both paths resolve on the live tree, checked
    without executing anything.
+6. [S] Pin the `nvim` submodule branch in `.gitmodules`. It omits `branch =`,
+   so `update.sh` guesses `master` and aborts under `set -euo pipefail` when
+   wrong. Done when `git submodule update --init nvim` resolves cleanly
+   against the pinned branch.
