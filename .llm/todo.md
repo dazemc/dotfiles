@@ -17,7 +17,5 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
 
 ## Authorized work
 
-1. [S] Write the README install/verify order. Cover submodule init,
-   `setup.sh`, sudo `private/setup.sh`, `update.sh`, and the `arch/`
-   scripts in ~10 lines. Done when a fresh checkout can be reproduced
-   from the README alone.
+No steps authorized — the queue is landed. `working` carries the phase
+config; merging it waits for the user's go-ahead.
