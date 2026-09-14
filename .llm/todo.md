@@ -17,35 +17,31 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
 
 ## Authorized work
 
-1. [S] Link tmux paths explicitly in `setup.sh`. Replace the `tmux/.*` glob
-   with direct links for `~/.tmux` and `~/.tmux.conf`. Done when a fresh-
-   shell check shows both links resolving and `tmux source-file
-   ~/.tmux.conf` succeeds without touching home.
-2. [S] Land `trickster` (`~/GitHub/trickster`, WIP) as the live bar. It
+1. [S] Land `trickster` (`~/GitHub/trickster`, WIP) as the live bar. It
    replaces both `waybar/` and `quickshell/`; until it ships, leave both
    untouched. Wire it into autostart and the link map, then delete the
    legacy bars or leave one-line pointers. Done when the running session
    shows exactly one live bar launched from autostart.
-3. [S] Wire `shell/zsh/.zshrc` per OS in `setup.sh`. It is macOS-only
+2. [S] Wire `shell/zsh/.zshrc` per OS in `setup.sh`. It is macOS-only
    (Homebrew paths) and never linked — `setup.sh` detects the OS and
    links it on macOS, skips on Arch. Done when a dry run links it only
    on macOS, verified with `bash -n` and without running `setup.sh`
    on the live session.
-4. [S] Fix stale paths from the older layout. Correct the `lspread` alias
+3. [S] Fix stale paths from the older layout. Correct the `lspread` alias
    to `shell/bash/lsp_util.sh` and replace the hardcoded `/home/username/`
    in `enviroment.d/99-hyperland.conf` (flag the misspelled dir/file names
    while there). Done when both paths resolve on the live tree, checked
    without executing anything.
-5. [S] Pin the `nvim` submodule branch in `.gitmodules`. It omits `branch =`,
+4. [S] Pin the `nvim` submodule branch in `.gitmodules`. It omits `branch =`,
    so `update.sh` guesses `master` and aborts under `set -euo pipefail` when
    wrong. Done when `git submodule update --init nvim` resolves cleanly
    against the pinned branch.
-6. [S] Document the msmtp auth providers by name in `.llm/structure.md`.
+5. [S] Document the msmtp auth providers by name in `.llm/structure.md`.
    `msmtp/config` needs env vars from `msmtp/smtp.env` (gitignored) and
    `private/bash/.env` — record which file provides what, names only,
    never values. Done when an agent can trace every required var to its
    source file without reading secrets.
-7. [S] Write the README install/verify order. Cover submodule init,
+6. [S] Write the README install/verify order. Cover submodule init,
    `setup.sh`, sudo `private/setup.sh`, `update.sh`, and the `arch/`
    scripts in ~10 lines. Done when a fresh checkout can be reproduced
    from the README alone.
