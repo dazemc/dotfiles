@@ -9,11 +9,13 @@ CONFIG_LIST=(
   "hyprland"
   "quickshell"
   "enviroment.d"
+  "zsh"
 )
 
 # do not leave a trailing slash as that will resolve the symlink back to the dotfiles dir
 CONFIG_LOCATION=(
   "$HOME/.bashrc"
+  "$HOME/.zshrc"
   "$HOME/.tmux"
   "$HOME/.tmux.conf"
   "$HOME/.config/nvim"
@@ -24,16 +26,32 @@ CONFIG_LOCATION=(
   "$HOME/.config/enviroment.d/"
 )
 
+# setup.sh links per-OS config: this workstation is Arch Linux, while
+# shell/zsh/.zshrc is macOS-only (Homebrew paths). Detect the OS once so
+# each link step can decide what applies.
+OS="$(uname -s)"
+
 function setGitGlobals {
   git config --global user.email "daazedjmcfarland@gmail.com"
   git config --global user.name "Daazed J McFarland"
 
 }
 
+# setup.sh deletes and relinks live paths (plus a sudo private script).
+# It runs only with the user's explicit go-ahead in chat — never as
+# verification for another step.
 function clearExistingConfig {
+  local backup_dir
+  backup_dir="$HOME/.config/dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
+  mkdir -p "$backup_dir"
+  echo "Backing up existing config to: $backup_dir"
   for config in "${CONFIG_LOCATION[@]}"; do
-    echo "Deleting: $config"
-    rm -rf "$config"
+    if [[ -e "$config" || -L "$config" ]]; then
+      echo "Moving: $config -> $backup_dir/"
+      mv "$config" "$backup_dir/"
+    else
+      echo "Skipping (not present): $config"
+    fi
   done
 }
 
@@ -49,7 +67,8 @@ function linkDirectories {
       ln -s "$PWD/nvim" "$HOME/.config/"
       ;;
     "tmux")
-      ln -s "$PWD"/tmux/.* "$HOME/"
+      ln -s "$PWD/tmux/.tmux" "$HOME/.tmux"
+      ln -s "$PWD/tmux/.tmux.conf" "$HOME/.tmux.conf"
       ;;
     "spotify")
       ln -s "$PWD/spotify-player/" "$HOME/.config/"
@@ -66,6 +85,14 @@ function linkDirectories {
       ;;
     "environment.d")
       ln -s "$PWD/environment.d/" "$HOME/.config"
+      ;;
+    "zsh")
+      # .zshrc is macOS-only; skip it on Linux.
+      if [[ "$OS" == "Darwin" ]]; then
+        ln -s "$PWD/shell/zsh/.zshrc" "$HOME/.zshrc"
+      else
+        echo "Skipping zsh config (macOS-only, OS=$OS)"
+      fi
       ;;
     esac
   done

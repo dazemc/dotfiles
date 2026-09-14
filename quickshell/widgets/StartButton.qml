@@ -27,13 +27,12 @@ Rectangle {
     }
     Process {
         id: drun
-        command: ["rofi", "-show", "drun"]
+        command: ["rofi", "-show", "drun", "-click-to-exit"]
         running: false
     }
-
     MouseArea {
         anchors.fill: parent
-        onPressed: {
+        onClicked: {
             parent.clicked = !parent.clicked;
             drun.running = true;
         }
