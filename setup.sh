@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 CONFIG_LIST=(
   "bash"
@@ -7,13 +8,13 @@ CONFIG_LIST=(
   "spotify"
   "msmtp"
   "hyprland"
-  "quickshell"
-  "enviroment.d"
+  "environment.d"
   "zsh"
 )
 
 # do not leave a trailing slash as that will resolve the symlink back to the dotfiles dir
 CONFIG_LOCATION=(
+  "$HOME/.alias"
   "$HOME/.bashrc"
   "$HOME/.zshrc"
   "$HOME/.tmux"
@@ -22,8 +23,7 @@ CONFIG_LOCATION=(
   "$HOME/.config/spotify-player"
   "$HOME/.config/msmtp"
   "$HOME/.config/hypr"
-  "$HOME/.config/quickshell"
-  "$HOME/.config/enviroment.d/"
+  "$HOME/.config/environment.d"
 )
 
 # setup.sh links per-OS config: this workstation is Arch Linux, while
@@ -32,9 +32,13 @@ CONFIG_LOCATION=(
 OS="$(uname -s)"
 
 function setGitGlobals {
-  git config --global user.email "daazedjmcfarland@gmail.com"
-  git config --global user.name "Daazed J McFarland"
-
+  # Do not clobber an existing global identity; only fill in what is unset.
+  if [[ -z "$(git config --global user.email || true)" ]]; then
+    git config --global user.email "daazedjmcfarland@gmail.com"
+  fi
+  if [[ -z "$(git config --global user.name || true)" ]]; then
+    git config --global user.name "Daazed J McFarland"
+  fi
 }
 
 # setup.sh deletes and relinks live paths (plus a sudo private script).
@@ -44,6 +48,7 @@ function clearExistingConfig {
   local backup_dir
   backup_dir="$HOME/.config/dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
   mkdir -p "$backup_dir"
+  chmod 700 "$backup_dir"
   echo "Backing up existing config to: $backup_dir"
   for config in "${CONFIG_LOCATION[@]}"; do
     if [[ -e "$config" || -L "$config" ]]; then
@@ -53,10 +58,17 @@ function clearExistingConfig {
       echo "Skipping (not present): $config"
     fi
   done
+  # Pre-rename spelling; move the stale copy aside so only the new
+  # environment.d link remains.
+  if [[ -e "$HOME/.config/enviroment.d" || -L "$HOME/.config/enviroment.d" ]]; then
+    echo "Moving legacy: $HOME/.config/enviroment.d -> $backup_dir/"
+    mv "$HOME/.config/enviroment.d" "$backup_dir/"
+  fi
 }
 
 function linkDirectories {
-  ln -sf "$PWD/shell/.alias" "$HOME/.alias"
+  mkdir -p "$HOME/.config"
+  ln -s "$PWD/shell/.alias" "$HOME/.alias"
   for config in "${CONFIG_LIST[@]}"; do
     echo "Linking configuration for $config"
     case $config in
@@ -71,20 +83,17 @@ function linkDirectories {
       ln -s "$PWD/tmux/.tmux.conf" "$HOME/.tmux.conf"
       ;;
     "spotify")
-      ln -s "$PWD/spotify-player/" "$HOME/.config/"
+      ln -s "$PWD/spotify-player" "$HOME/.config/"
       ;;
     "msmtp")
       mkdir -p "$HOME/.config/msmtp/"
       ln -s "$PWD/msmtp/config" "$HOME/.config/msmtp/"
       ;;
     "hyprland")
-      ln -s "$PWD/hyprland/hypr/" "$HOME/.config/"
-      ;;
-    "quickshell ")
-      ln -s "$PWD/quickshell/" "$HOME/.config/"
+      ln -s "$PWD/hyprland/hypr" "$HOME/.config/"
       ;;
     "environment.d")
-      ln -s "$PWD/environment.d/" "$HOME/.config"
+      ln -s "$PWD/environment.d" "$HOME/.config/"
       ;;
     "zsh")
       # .zshrc is macOS-only; skip it on Linux.
@@ -103,8 +112,9 @@ function runPrivateScript {
 }
 
 function postSetup {
-  # shellcheck source=/dev/null
-  source ~/.bashrc
+  # Do not source ~/.bashrc here: its uwsm autostart block can launch a
+  # second Hyprland session when setup.sh is run from a TTY.
+  echo "Setup complete. Start a new login shell to pick up shell changes."
   # TODO: symlink nvim user config+packages to root rather than having two seperate installs
   # possibly need to sync it instead because there may be permission issues with package updates/installs.
 }
