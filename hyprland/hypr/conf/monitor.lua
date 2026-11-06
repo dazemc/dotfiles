@@ -4,15 +4,16 @@
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
-  output = "HDMI-A-1",
+  output = "HDMI-A-2",
   mode = "3840x2160@164.99",
   position = "auto",
   scale = 2,
-  vrr = 1,
+  vrr = 0,
   bitdepth = 10,
-  cm = "hdr",
+  cm = "hdredid",
   sdr_min_luminance = 0.005,
   sdr_max_luminance = 700,
+  sdrsaturation = 1.2,
   min_luminance = 0.005,
   max_luminance = 2500,
   max_avg_luminance = 770,

@@ -5,14 +5,14 @@
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
   general = {
-    gaps_in = 5,
-    gaps_out = 10,
+    gaps_in = 3,
+    gaps_out = 3,
 
-    border_size = 2,
+    border_size = 3,
 
     col = {
-      active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
-      inactive_border = "rgba(595959aa)",
+      active_border = { colors = { "rgba(204f80cc)", "rgba(b37615cc)", "rgba(00000096)" }, angle = 45 },
+      inactive_border = "rgba(d61b1bd9)",
     },
 
     -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -25,8 +25,8 @@ hl.config({
   },
 
   decoration = {
-    rounding = 5,
-    rounding_power = 2,
+    rounding = 12,
+    rounding_power = 10,
 
     -- Change transparency of focused and unfocused windows
     active_opacity = 1.0,
@@ -81,22 +81,24 @@ hl.animation({ leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "a
 hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" })
 
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
--- "Smart gaps" / "No gaps when only"
--- uncomment all if you wish to use that.
--- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
--- hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
--- hl.window_rule({
---     name  = "no-gaps-wtv1",
---     match = { float = false, workspace = "w[tv1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
--- hl.window_rule({
---     name  = "no-gaps-f1",
---     match = { float = false, workspace = "f[1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
+-- "Smart gaps" / "No gaps when only one window is visible"
+-- These rules are active; keep them in sync with the general gaps/rounding.
+hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
+hl.workspace_rule({ workspace = "f[1]", gaps_out = 0, gaps_in = 0 })
+hl.window_rule({
+  name           = "no-gaps-wtv1",
+  match          = { float = false, workspace = "w[tv1]" },
+  border_size    = 0,
+  rounding       = 7,
+  rounding_power = 10
+})
+hl.window_rule({
+  name           = "no-gaps-f1",
+  match          = { float = false, workspace = "f[1]" },
+  border_size    = 0,
+  rounding       = 7,
+  rounding_power = 10,
+})
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({

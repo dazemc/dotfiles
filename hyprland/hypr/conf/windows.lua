@@ -90,7 +90,37 @@ hl.window_rule({
   },
   workspace = 9
 })
+
+-- Keep workspaces 1-5 and 9 on the main monitor.
+-- Keep this in sync with conf/monitor.lua; if the output name changes the
+-- rules are silently ignored or move workspaces to the wrong display.
 hl.workspace_rule({
   workspace = "1",
+  monitor = "HDMI-A-2",
   default = true,
+})
+
+hl.workspace_rule({
+  workspace = "2",
+  monitor = "HDMI-A-2",
+})
+
+hl.workspace_rule({
+  workspace = "3",
+  monitor = "HDMI-A-2",
+})
+
+hl.workspace_rule({
+  workspace = "4",
+  monitor = "HDMI-A-2",
+})
+
+hl.workspace_rule({
+  workspace = "5",
+  monitor = "HDMI-A-2",
+})
+
+hl.workspace_rule({
+  workspace = "9",
+  monitor = "HDMI-A-2",
 })

@@ -10,13 +10,12 @@ hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(programs.terminal))
 hl.bind(
   mainMod .. " + M",
-  hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
+  hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit")
 )
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(programs.fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(programs.menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
@@ -44,15 +43,29 @@ hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
+-- Swap axis of windows
+hl.bind(mainMod .. " + SPACE", hl.dsp.layout("togglesplit"))
+
+-- Window ratios
+hl.bind(mainMod .. " + PERIOD", hl.dsp.layout("splitratio +0.1"))
+hl.bind(mainMod .. " + COMMA", hl.dsp.layout("splitratio -0.1"))
+hl.bind(mainMod .. " + SLASH", hl.dsp.layout("splitratio 1.0 exact"))
+
+
+-- Voice dictation: SUPER+D toggles recording, text is typed into the focused window
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("/home/daze/.local/bin/dictate toggle"))
+-- Discard the current recording without transcribing it
+hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("/home/daze/.local/bin/dictate cancel"))
+
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind(
   "XF86AudioRaiseVolume",
-  hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
+  hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+"),
   { locked = true, repeating = true }
 )
 hl.bind(
   "XF86AudioLowerVolume",
-  hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
+  hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"),
   { locked = true, repeating = true }
 )
 hl.bind(
