@@ -12,7 +12,7 @@ corrected.
   file per commit, and are pushed. After each markdown commit, merge `master`
   back into `working` so the tree keeps reading current docs.
 - Every step is one action with one done-criterion; split work that spans
-  Hyprland, Quickshell, shell, and tmux into separate steps. Never batch multiple
+  Hyprland, trickster, shell, and tmux into separate steps. Never batch multiple
   steps into one change.
 - Commit every finished TODO step as a slice: one config commit on `working`,
   then one commit per touched markdown file on `master` (switch to `master`,
@@ -55,7 +55,8 @@ wait for the user's explicit go-ahead in chat.
 
 - `setup.sh` deletes live paths (`rm -rf` on `~/.bashrc`, `~/.tmux`,
   `~/.tmux.conf`, `~/.config/nvim`, `~/.config/hypr`, …) before relinking,
-  sets global git identity, and invokes `private/setup.sh` under sudo.
+  fills in an unset global git identity, and invokes `private/setup.sh` under
+  sudo.
   Run it only when the link map itself changed (see `.llm/structure.md`),
   say so first, and confirm the user has a way back (working shell,
   committed tree) before it runs.
@@ -79,7 +80,8 @@ always targeted and non-destructive, per area:
 - Hyprland: `hyprctl reload`, only with a go-ahead; an invalid config keeps
   last-good state in most paths, but confirm the compositor is healthy
   afterwards.
-- Quickshell: restart only the shell process (`qs`), never the compositor.
+- trickster: run `trickster --check` for a preflight; restart only the bar
+  process, never the compositor.
 - nvim: changes belong upstream; here, only verify the pin still resolves
   (`git submodule status nvim`).
 - msmtp / `private/`: verify by name and path only. Never cat credentials,
@@ -93,7 +95,7 @@ for their verdict instead of routing around it.
 
 Never log out, terminate, restart, or otherwise stop the user's local
 graphical session on the user's behalf. When testing requires restarting the
-bar, restart only the Quickshell process — never the compositor — and wait for
+bar, restart only the trickster process — never the compositor — and wait for
 explicit confirmation before touching session targets, the display manager,
 reboot, or power off.
 

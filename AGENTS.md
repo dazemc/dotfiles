@@ -3,7 +3,7 @@
 An Arch Linux workstation defined as files, activated by symlinks.
 
 The repository is checked out at `~/GitHub/dotfiles` and `setup.sh` links
-each area into its live path (`~/.config/hypr`, `~/.config/quickshell`,
+each area into its live path (`~/.config/hypr`, `~/.config/nvim`,
 `~/.tmux.conf`, …). There is no build step between an edit here and the
 running system — a bad symlink or a bad config breaks the session that is
 editing it. That is the whole discipline of this repo.
@@ -11,8 +11,8 @@ editing it. That is the whole discipline of this repo.
 ## Goal
 
 One checkout reproduces the workstation: Hyprland compositor config,
-Quickshell bar, shell, tmux, Neovim, and app configs, installed by
-symlinking, never by copying. Every file is either live (symlinked into
+the external trickster bar, shell, tmux, Neovim, and app configs, installed
+by symlinking, never by copying. Every file is either live (symlinked into
 `$HOME` or `$XDG_CONFIG_HOME`) or explicitly legacy. Nothing is both, and
 nothing is neither.
 
@@ -22,8 +22,8 @@ step at a time, on the working branch (see Repository workflow):
 1. Implement the step, nothing more.
 2. Prove it without breaking the live session: syntax-check what you
    touched (`bash -n`, `shellcheck` where available, `hyprctl reload`
-   semantics for Hyprland, `tmux source-file` for tmux, a Quickshell
-   restart of the shell process only), and exercise what the step changed.
+   semantics for Hyprland, `tmux source-file` for tmux, a trickster
+   restart of the bar process only), and exercise what the step changed.
    A step that parses but misbehaves at runtime is not done. If the
    done-criteria needs eyes on screen, hand the user the exact run-and-look
    commands and wait for their verdict — never substitute screenshots.
@@ -38,7 +38,7 @@ step at a time, on the working branch (see Repository workflow):
    share a commit with each other.
 
 Never remove an unverified step. A step is one action with one done-criterion;
-split work that spans Hyprland, Quickshell, shell, and tmux into separate steps.
+split work that spans Hyprland, trickster, shell, and tmux into separate steps.
 Never batch multiple steps into one change. Never check steps off — remove
 them. Do not let the queue rot.
 
@@ -48,15 +48,16 @@ them. Do not let the queue rot.
   `hypr/conf/*.lua` (monitor, autostart, envars, keybindings, …) plus
   `hypr/scripts/*` helpers and `hypridle.conf`. Symlinked to
   `~/.config/hypr` by `setup.sh`.
-- A Quickshell bar: `quickshell/shell.qml` plus `widgets/`, `themes/`,
-  `services/`, and `config/`. This is the live bar; Waybar is legacy.
+- The live bar is trickster, configured in its own checkout outside this
+  repo. `quickshell/` is legacy QML kept for reference, is not linked, and
+  is not autostarted; the old bar configuration has been removed.
 - Shell config: `shell/bash/.bashrc`, `shell/bash/lsp_util.sh`,
   `shell/.alias`, `shell/zsh/.zshrc`.
 - tmux config: `tmux/.tmux.conf` with plugins managed as git submodules
   under `tmux/.tmux/plugins/` (tpm is not used; do not reintroduce it).
 - Neovim config as a git submodule at `nvim/` (`lazy.nvim`-based, owned
   upstream). Edits belong in the nvim repository, not as local overrides.
-- App configs: `spotify-player/`, `msmtp/config`, `enviroment.d/`.
+- App configs: `spotify-player/`, `msmtp/config`, `environment.d/`.
 - Machine provisioning: `arch/` package lists (`pkglist.txt`,
   `foreignpkglist.txt`) with `install.sh` / `backup.sh`.
 - `private/` as a git submodule holding machine-specific secrets and
@@ -71,8 +72,9 @@ them. Do not let the queue rot.
 - Not a public store. `msmtp/smtp.env` is gitignored and `private/` is a
   separate repository. Contents may be read for verification; never print
   or commit credentials, tokens, or mail auth.
-- Not Waybar. `waybar/` is legacy config kept beside the live Quickshell
-  bar. Do not extend it, wire it into autostart, or treat it as live.
+- Not the bar. The live bar is trickster, configured outside this checkout;
+  `quickshell/` is legacy QML and is not linked. Do not extend the legacy
+  bar or wire it into autostart.
 - Not a copy-based config. The live system reads these files through
   symlinks. Never copy a file into `~/.config` to "test" — fix the link
   map instead.
@@ -85,7 +87,7 @@ them. Do not let the queue rot.
 dotfiles
   setup.sh            symlink map: repo path -> live path (see .llm/structure.md)
   hyprland/hypr/      hyprland.lua + conf/*.lua + scripts/  -> ~/.config/hypr
-  quickshell/         shell.qml + widgets/themes/services/  -> ~/.config/quickshell
+  quickshell/         legacy QML (not linked); trickster is the live bar
   shell/              .bashrc, .alias, zsh                   -> ~/, via individual links
   tmux/               .tmux.conf + plugin submodules         -> ~/
   nvim/               submodule                             -> ~/.config/nvim
@@ -99,12 +101,12 @@ script in the same session and record the finding.
 ## Configuration
 
 Config languages are per-area and stay per-area: Lua for Hyprland,
-QML for Quickshell, shell for shell/tmux glue, TOML for spotify-player.
+QML for legacy Quickshell, shell for shell/tmux glue, TOML for spotify-player.
 Do not invent a shared templating layer, a config generator, or a second
 way to express the same setting.
 
 Live reload is per-area and non-destructive: `hyprctl reload` for Hyprland,
-restart only the Quickshell process (`qs`), `tmux source-file ~/.tmux.conf`
+restart only the trickster process, `tmux source-file ~/.tmux.conf`
 for tmux, a new shell for shell changes. Invalid files keep last-good state
 where the tool supports it; never leave the session without a working bar,
 compositor config, or shell.
@@ -184,11 +186,11 @@ from that.
   `private/setup.sh` under sudo. `update.sh` moves every submodule.
   Either one can take the session down; both wait for confirmation.
 - Prefer targeted verification over reinstalling: re-source, `hyprctl
-  reload`, restart only the Quickshell process, `tmux source-file`. Reach
+  reload`, restart only the trickster process, `tmux source-file`. Reach
   for `setup.sh` only when the link map itself changed, and say so first.
 - Never log out, terminate, restart, or otherwise stop the user's local
   graphical session on the user's behalf. When testing requires restarting
-  the bar, restart only the Quickshell process — never the compositor — and
+  the bar, restart only the trickster process — never the compositor — and
   wait for explicit confirmation before touching session targets, the display
   manager, reboot, or power off.
 - Never touch `arch/install.sh` behavior without a go-ahead: it installs
@@ -207,7 +209,7 @@ bash -n shell/bash/.bashrc shell/.alias   # shell syntax, no execution
 shellcheck setup.sh update.sh              # when shellcheck is installed
 hyprctl reload                             # Hyprland, only with a go-ahead
 tmux source-file ~/.tmux.conf              # tmux, live and non-destructive
-qs                                         # Quickshell restart, shell process only
+trickster --check                          # bar preflight; restart only trickster
 ```
 
 A first checkout requires network access (submodules, Arch packages);
