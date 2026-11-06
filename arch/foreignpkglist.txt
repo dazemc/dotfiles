@@ -1,4 +1,3 @@
-bridge-utils
-hyprshutdown
 steamtinkerlaunch-git
+trickster
 woeusb

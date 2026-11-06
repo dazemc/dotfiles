@@ -1,6 +1,6 @@
 7zip
 arch-install-scripts
-aura
+awww
 base
 base-devel
 bash-completion
@@ -18,6 +18,7 @@ firefox
 ghostscript
 git
 greetd
+hypridle
 hyprland
 hyprpaper
 hyprpolkitagent
@@ -34,6 +35,7 @@ man-db
 mdadm
 mermaid-cli
 mesa-utils
+msmtp
 neovim
 npm
 nvidia-open-dkms
@@ -55,7 +57,6 @@ rust
 shfmt
 spotify-launcher
 steam
-steamtinkerlaunch-git
 tectonic
 texlive-bin
 tmux
@@ -65,9 +66,7 @@ ttf-jetbrains-mono
 ttf-jetbrains-mono-nerd
 unzip
 uwsm
-waybar
 wget
 wl-clipboard
 wlr-randr
-woeusb
 zsh
