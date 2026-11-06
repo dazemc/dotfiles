@@ -29,7 +29,15 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 
 ## Open suggestions
 
-- **trickster bar is WIP, not queue work yet.** `~/GitHub/trickster` will
-  replace `waybar/` and `quickshell/`, but it is still under construction.
-  Leave both legacy bars untouched until it ships; re-escalate the landing
-  (autostart + link map + retire legacy) when it runs.
+- **Trickster config is not tracked.** The live bar reads
+  `~/.config/trickster/{settings.json,outputs.conf}`, but those files are
+  outside this checkout and `setup.sh` does not link them. Decide whether to
+  track them here or in `~/GitHub/trickster`.
+- **Arch lists are curated, `backup.sh` is a full snapshot.** Running
+  `arch/backup.sh` (or the pacman hook) replaces the curated install list
+  with every explicit package. Decide whether to split curated install lists
+  from full snapshots before running it.
+- **SSH is 2FA, not TOTP-only.** `private/pam.d/sshd` requires TOTP plus the
+  account password via `system-remote-login`. If TOTP-only is intended, drop
+  the `auth include system-remote-login` line in the private repo and retest
+  from a local TTY before relying on it.
