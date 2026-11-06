@@ -41,3 +41,13 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
   account password via `system-remote-login`. If TOTP-only is intended, drop
   the `auth include system-remote-login` line in the private repo and retest
   from a local TTY before relying on it.
+- **ccls ESP include paths are pinned to one toolchain build.**
+  `nvim/lua/daze/lspconfig.lua` hardcodes `esp-15.2.0_20251204` and libstdc++
+  15.2.0 paths; after an ESP-IDF update ccls points at missing headers. Derive
+  from the newest `~/.espressif/tools/xtensa-esp-elf/*` or compile_commands.
+- **waybar package remains installed after its config was removed.**
+  `pacman -Q waybar` is still present; `arch/backup.sh` would put it back in a
+  full snapshot. Remove it with a go-ahead if it is no longer wanted.
+- **spotify-player config is unused.** `spotify_player` is not installed while
+  `spotify-launcher` is; `~/.config/spotify-player` and the `spty` alias have
+  no consumer. Install the TUI or remove both.
