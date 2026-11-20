@@ -87,6 +87,13 @@ hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
+-- Spotify: official web player for audio + terminal TUI as remote
+-- (local librespot playback is refused by Spotify for this account)
+hl.bind(
+  mainMod .. " + SHIFT + M",
+  hl.dsp.exec_cmd("kitty --title Spotify /home/daze/.local/bin/spotify-web-tui")
+)
+
 -- Requires hyprcap
 -- Region
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprcap shot region -z -c -n -w"))
