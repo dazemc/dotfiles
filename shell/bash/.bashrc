@@ -10,7 +10,6 @@ fi
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$HOME/.local/opt/flutter/bin:$PATH"
 export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
-export TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins/
 export LANG=en_US.utf8
 export LC_ALL=en_US.utf8
 export LC_CTYPE=en_US.utf8
@@ -31,9 +30,9 @@ fi
 # ESP32
 function idfsource() {
   sourceEsp32='/opt/esp-idf/export.sh'
-  if [ -f $sourceEsp32 ]; then
+  if [ -f "$sourceEsp32" ]; then
     echo "Sourcing ESP32..."
-    source /opt/esp-idf/export.sh
+    source "$sourceEsp32"
   else
     echo "ESP32 source missing"
   fi

@@ -6,7 +6,8 @@ set -euo pipefail
 filename="${1:?usage: lsp_util.sh <file> <language>}"
 lang="${2:?usage: lsp_util.sh <file> <language>}"
 tempFile="$(mktemp --suffix=".$lang")"
+trap 'rm -f -- "$tempFile"' EXIT
 
-cp "$filename" "$tempFile"
-chmod -w "$tempFile"
-exec nvim "$tempFile"
+cp -- "$filename" "$tempFile"
+chmod 400 -- "$tempFile"
+nvim -R -- "$tempFile"
