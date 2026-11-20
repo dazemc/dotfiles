@@ -16,7 +16,6 @@ disagree, fix the script and record the finding.
 | `shell/bash/.bashrc` | `~/.bashrc` | live |
 | `nvim/` | `~/.config/nvim` | live (submodule, see below) |
 | `tmux/.tmux/` + `tmux/.tmux.conf` | `~/.tmux/` + `~/.tmux.conf` | live, explicit links |
-| `spotify-player/` | `~/.config/spotify-player` | live (directory link) |
 | `msmtp/config` | `~/.config/msmtp/config` | live (file link; the dir is created, only the file is linked) |
 | `hyprland/hypr/` | `~/.config/hypr` | live (directory link; covers `hyprland.lua`, `conf/`, `scripts/`, `hypridle.conf`) |
 | `environment.d/` | `~/.config/environment.d` | live (directory link; systemd reads this spelling) |
