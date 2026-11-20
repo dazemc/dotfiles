@@ -48,7 +48,9 @@ reasons it needs a go-ahead (see `.llm/workflow.md`).
   `autostart.lua` and `keybindings.lua`. Autostart launches trickster and
   never Quickshell or another legacy bar; `hypridle` is intentionally disabled
   (sleep/idle off since 2026-11-11) and is re-enabled in both `autostart.lua`
-  and `hypridle.conf` when wanted.
+  and `hypridle.conf` when wanted. When re-enabled, `hypridle.conf` gates
+  dim/DPMS/suspend on `scripts/audio-idle`, and each on-timeout guard skips
+  while `scripts/audio-playing` succeeds.
 - Bar: trickster is the live bar and is configured in its own checkout
   outside this repo. `archive/quickshell/` is retired QML and is not linked.
 - Archive: `archive/` holds retired configuration (`quickshell/` today). It is
