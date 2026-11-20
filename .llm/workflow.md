@@ -9,14 +9,17 @@ corrected.
   `.llm/todo.md` that still has steps. No other branches exist.
 - Config lands on `working`; markdown lands on `master`. `AGENTS.md`, every file
   under `.llm/`, and docs pages commit directly on `master`, immediately, one
-  file per commit, and are pushed. After each markdown commit, merge `master`
-  back into `working` so the tree keeps reading current docs.
+  file per commit, and are pushed. Do this in the short-lived worktree created
+  by `./docs.sh`; never switch the live checkout to `master`. After each
+  markdown commit, merge `master` back into `working` so the tree keeps
+  reading current docs.
 - Every step is one action with one done-criterion; split work that spans
   Hyprland, trickster, shell, and tmux into separate steps. Never batch multiple
   steps into one change.
 - Commit every finished TODO step as a slice: one config commit on `working`,
-  then one commit per touched markdown file on `master` (switch to `master`,
-  commit, push, switch back, merge `master` into `working`). A step is
+  then one commit per touched markdown file on `master` via the `./docs.sh`
+  worktree (commit and push from there, then `./docs.sh --close` merges
+  `master` into `working` and removes the worktree). A step is
   finished only when it is implemented, verified in the live session without
   breaking it, and removed from `.llm/todo.md`. Markdown never shares a
   commit with config or with another markdown file.
@@ -47,6 +50,26 @@ corrected.
   the next phase starts.
 - Networked Git/GitHub commands (`fetch`, `push`, `gh`) run outside any
   sandbox; sandboxed credential or network failures are not authoritative.
+
+## Markdown commits
+
+The live session reads this checkout through symlinks, and `master` is older
+than `working` for config. A `git checkout master` in the live tree can
+therefore serve stale Hyprland/shell/tmux files to the running session; this
+broke a reload on 2026-11-20. Markdown work uses a short-lived worktree:
+
+```sh
+wt="$(./docs.sh)"                 # $TMPDIR/dotfiles-docs, on master
+cd "$wt"                          # edit and commit there
+git add <one-markdown-file> && git commit -m "docs: ..."
+git push origin master
+cd -                              # back to the live checkout
+./docs.sh --close                 # merge master into working, remove worktree
+```
+
+One file per commit, no config in the same commit, push each commit. If
+`./docs.sh` reports that the worktree is not on `master`, stop and inspect
+rather than switching the live checkout.
 
 ## setup.sh and update.sh
 
