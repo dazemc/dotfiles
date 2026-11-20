@@ -48,6 +48,3 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 - **waybar package remains installed after its config was removed.**
   `pacman -Q waybar` is still present; `arch/backup.sh` would put it back in a
   full snapshot. Remove it with a go-ahead if it is no longer wanted.
-- **spotify-player config is unused.** `spotify_player` is not installed while
-  `spotify-launcher` is; `~/.config/spotify-player` and the `spty` alias have
-  no consumer. Install the TUI or remove both.
