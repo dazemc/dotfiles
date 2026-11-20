@@ -21,5 +21,6 @@ Phase: archive and harden. Source: user objective of 2026-11-20 (archive
 unused configs, optimize, fix bugs, add major-change suggestions). Executed
 by the roster in `.llm/org-chart.md`.
 
-Landed 2026-11-20. No steps remain; merging `working` into `master` waits for
-the user's explicit go-ahead.
+Landed 2026-11-20. Markdown commits now use the `./docs.sh` worktree, so the
+live checkout is never switched. No steps remain; merging `working` into
+`master` waits for the user's explicit go-ahead.
