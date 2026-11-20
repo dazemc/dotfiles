@@ -21,8 +21,5 @@ Phase: archive and harden. Source: user objective of 2026-11-20 (archive
 unused configs, optimize, fix bugs, add major-change suggestions). Executed
 by the roster in `.llm/org-chart.md`.
 
-11. **Final verification.** Run `diagnose.sh`, `bash -n`/`shellcheck` on
-    touched scripts, a detached tmux parse, `hyprctl configerrors` (read
-    only), and confirm every live link in the map. Done: all checks pass,
-    output is pasted in the session, and the working tree is clean except
-    the user's stashed whitespace change. Size S.
+Landed 2026-11-20. No steps remain; merging `working` into `master` waits for
+the user's explicit go-ahead.
