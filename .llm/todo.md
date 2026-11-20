@@ -21,12 +21,7 @@ Phase: archive and harden. Source: user objective of 2026-11-20 (archive
 unused configs, optimize, fix bugs, add major-change suggestions). Executed
 by the roster in `.llm/org-chart.md`.
 
-1. **Archive `quickshell/`.** Move the legacy bar to `archive/quickshell/`,
-   remove the stale `~/.config/quickshell` symlink, and add
-   `archive/README.md` stating the no-link policy. Done: no live reference,
-   `rg quickshell` hits only archive/docs, `diagnose.sh` passes, docs updated.
-   Size S.
-2. **Archive `spotify-player/`.** Move it to `archive/spotify-player/` and
+1. **Archive `spotify-player/`.** Move it to `archive/spotify-player/` and
    retire every reference: `setup.sh`, `restore.sh`, `diagnose.sh`, the
    `spty` alias, the live symlink, and the open suggestion. Done: `rg
    spotify-player` hits only `archive/` and docs, `diagnose.sh` has no
