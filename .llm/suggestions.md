@@ -45,6 +45,43 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
   `nvim/lua/daze/lspconfig.lua` hardcodes `esp-15.2.0_20251204` and libstdc++
   15.2.0 paths; after an ESP-IDF update ccls points at missing headers. Derive
   from the newest `~/.espressif/tools/xtensa-esp-elf/*` or compile_commands.
-- **waybar package remains installed after its config was removed.**
-  `pacman -Q waybar` is still present; `arch/backup.sh` would put it back in a
-  full snapshot. Remove it with a go-ahead if it is no longer wanted.
+- **Unused packages remain installed.** `waybar`, `quickshell` (now archived),
+  and `hyprpaper` (awww handles the wallpaper) have no live config or process;
+  `arch/backup.sh` would re-add them. Remove them with a go-ahead and keep the
+  curated install lists in sync.
+- **The live checkout is switched to `master` for docs commits.**
+  `~/.config/hypr` points into this tree, so a checkout briefly serves
+  master's older config to the running session; a reload in that window failed
+  with `conf.monitor not found` and fell back to 60 Hz (2026-11-20). Use a
+  separate `git worktree` for master docs, or keep the live tree on `working`.
+- **Monitor and workspace rules are pinned to `HDMI-A-2`.** If the output name
+  changes or the display is unplugged, `monitor.lua` and `windows.lua` silently
+  fall back to default mode/placement and the 165 Hz mode is lost. Add a
+  fallback `hl.monitor({ output = "", mode = "preferred" })` and derive the
+  workspace monitor, then verify with `hyprctl monitors`.
+- **Hyprland permissions are disabled.** `permissions.lua` leaves
+  `ecosystem.enforce_permissions` and every allow rule commented out, so any
+  client can request screencopy/plugin access. Enable it with an allowlist for
+  grim, the portal, and hyprpm; permission changes need a compositor restart.
+- **The tmux-battery submodule is now dead weight.** The load line and options
+  are gone (no battery on this host), but `.gitmodules` and the 213K checkout
+  remain. Remove the submodule in its own step, then drop it from
+  `.llm/structure.md`; do not reintroduce tpm.
+- **tmux probes the network twice and the CPU for ~1 s per refresh.**
+  `tmux-online-status` and `tmux-ping` both run `ping`, and `tmux-cpu` runs
+  `iostat -c 1 2`; at the 15 s interval this is constant background work.
+  Consolidate to one `#()` probe or cache the values; the scripts live in
+  submodules, so treat it as a major step.
+- **`allow-passthrough on` exposes the outer terminal.** Any pane, including an
+  SSH session, can emit raw escapes/OSC52 to the host terminal. Decide whether
+  an image protocol needs it; otherwise set `allow-passthrough off` and keep
+  `set-clipboard on` for normal copy.
+- **`setup.sh` cannot repair a drifted link.** The live `.bashrc` and
+  `environment.d` were real files for months while `diagnose.sh` only warned;
+  running `setup.sh` would move good files aside and drop local changes. Add a
+  gated `--relink`/`diagnose --fix` that backs up and recreates only mismatched
+  links, and test it with a temp `HOME`.
+- **Hypridle dim cannot work on this desktop.** `hypridle-dim` calls
+  `brightnessctl -s set 10`, but there is no `/sys/class/backlight`; if idle is
+  re-enabled the 150 s listener fails. Use DPMS/awww brightness or drop the dim
+  listener, and test with `hypridle -c ... -v`.
