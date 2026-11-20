@@ -57,7 +57,7 @@ them. Do not let the queue rot.
   under `tmux/.tmux/plugins/` (tpm is not used; do not reintroduce it).
 - Neovim config as a git submodule at `nvim/` (`lazy.nvim`-based, owned
   upstream). Edits belong in the nvim repository, not as local overrides.
-- App configs: `spotify-player/`, `msmtp/config`, `environment.d/`.
+- App configs: `msmtp/config`, `environment.d/`.
 - Machine provisioning: `arch/` package lists (`pkglist.txt`,
   `foreignpkglist.txt`) with `install.sh` / `backup.sh`.
 - `private/` as a git submodule holding machine-specific secrets and
@@ -101,7 +101,7 @@ script in the same session and record the finding.
 ## Configuration
 
 Config languages are per-area and stay per-area: Lua for Hyprland,
-shell for shell/tmux glue, TOML for spotify-player.
+shell for shell/tmux glue.
 Do not invent a shared templating layer, a config generator, or a second
 way to express the same setting.
 

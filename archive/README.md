@@ -12,3 +12,5 @@ Current contents:
 
 - `quickshell/` — retired QML bar. Trickster is the live bar; do not extend
   this tree or wire it into autostart.
+- `spotify-player/` — TOML for the unused `spotify_player` TUI. The live app
+  is `spotify-launcher`, which does not read this; `spty` was removed with it.

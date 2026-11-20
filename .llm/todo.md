@@ -21,11 +21,6 @@ Phase: archive and harden. Source: user objective of 2026-11-20 (archive
 unused configs, optimize, fix bugs, add major-change suggestions). Executed
 by the roster in `.llm/org-chart.md`.
 
-1. **Archive `spotify-player/`.** Move it to `archive/spotify-player/` and
-   retire every reference: `setup.sh`, `restore.sh`, `diagnose.sh`, the
-   `spty` alias, the live symlink, and the open suggestion. Done: `rg
-   spotify-player` hits only `archive/` and docs, `diagnose.sh` has no
-   warning for it, and the live link is gone. Size S.
 3. **Drop the tracked AUR artifact.** Delete `arch/aura.tar.gz`, ignore
    `arch/aura/` and the tarball, because `arch/install.sh` re-downloads them.
    Done: `git ls-files arch/` has no tarball, `git check-ignore` covers both,
