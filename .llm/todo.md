@@ -17,5 +17,13 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
 
 ## Authorized work
 
-No steps authorized — the queue is empty. `working` carries the landed config;
-merging it into `master` waits for the user's explicit go-ahead.
+Phase: Neovim health. Source: user objective of 2026-11-20 (check the Neovim
+logs for errors/warnings and fix them).
+
+1. **Fix the Neovim health errors and warnings.** Remove the duplicate
+   `hyprlang`/`hyprls` and `systemd_ls`/`systemd_lsp` configurations, wire
+   `vim.ui.input`/`vim.ui.select` to Snacks, add the `norg` parser, disable
+   the unused Perl provider, and stop `nvim-treesitter` from trying to install
+   unsupported filetype languages. Done: `:checkhealth` has no config-caused
+   errors, LSP logs are clean, startup emits no errors, and the nvim submodule
+   pin is moved on `working`. Size S.
