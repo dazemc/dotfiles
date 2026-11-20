@@ -81,7 +81,9 @@ status segment is commented out, and the load line/options were removed.
   `backup.sh` regenerates full explicit snapshots into them, so review the diff
   before committing a regeneration. `install.sh` installs the desktop set plus
   the aura AUR helper and must run as a normal user. `server-install.sh
-  --host user@host` installs `server-pkglist.txt` and links only shell/tmux/
-  nvim; it never runs `private/setup.sh`. `pkglist.full` / `foreignpkglist.full`
-  are the tracked snapshots written by the private pacman hook. Installing
-  packages needs a go-ahead.
+  --host user@host` ranks pacman mirrors with reflector, installs
+  `server-pkglist.txt`, and links only shell/tmux/nvim; it preserves a
+  server-local `~/.tmux.conf` and never touches `~/.config/msmtp/config`, and
+  it never runs `private/setup.sh`. `pkglist.full` / `foreignpkglist.full` are
+  the tracked snapshots written by the private pacman hook. Installing packages
+  needs a go-ahead.
