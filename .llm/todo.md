@@ -21,11 +21,6 @@ Phase: archive and harden. Source: user objective of 2026-11-20 (archive
 unused configs, optimize, fix bugs, add major-change suggestions). Executed
 by the roster in `.llm/org-chart.md`.
 
-4. **Fix the macOS-only zsh backup.** `setup.sh` moves `~/.zshrc` aside on
-   Linux even though it never relinks it. Skip the backup unless
-   `OS=Darwin`; keep `restore.sh` consistent. Done: `bash -n` passes and a
-   temp-`HOME` harness shows the file untouched on Linux, moved on Darwin.
-   Size S.
 5. **Repair live shell drift.** Fix the stale `~/develop/flutter` path to the
    installed `~/.local/opt/flutter`, then replace the drifted real
    `~/.bashrc` with the repo symlink (backup first). Done: `readlink
