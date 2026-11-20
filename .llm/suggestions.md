@@ -49,11 +49,6 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
   and `hyprpaper` (awww handles the wallpaper) have no live config or process;
   `arch/backup.sh` would re-add them. Remove them with a go-ahead and keep the
   curated install lists in sync.
-- **The live checkout is switched to `master` for docs commits.**
-  `~/.config/hypr` points into this tree, so a checkout briefly serves
-  master's older config to the running session; a reload in that window failed
-  with `conf.monitor not found` and fell back to 60 Hz (2026-11-20). Use a
-  separate `git worktree` for master docs, or keep the live tree on `working`.
 - **Monitor and workspace rules are pinned to `HDMI-A-2`.** If the output name
   changes or the display is unplugged, `monitor.lua` and `windows.lua` silently
   fall back to default mode/placement and the 165 Hz mode is lost. Add a
