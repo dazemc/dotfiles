@@ -46,7 +46,7 @@ touches the live session.
 | Junior engineer | Bounded edits and inventories | Mechanical edits, reference sweeps, first-pass docs, evidence gathering | Touch live symlinks, secrets, `private/`, or destructive commands |
 | Test Lead / Testers | Independent verification | Reproduce, run static/live checks, **veto** a slice | Edit the change under test, approve without evidence |
 | Security & Privacy | Secrets, permissions, live-session hazards | Inspect `private/` by name/path, block a slice | Print secret values, commit credentials |
-| Release Manager | Branch and commit discipline | Stage slices, merge `master` into `working`, open the PR | Bundle config with markdown, force-push a phase |
+| Release Manager | Branch and commit discipline | Stage slices in the `./docs.sh` worktree, merge `master` into `working`, open the PR | Bundle config with markdown, force-push a phase, switch the live checkout |
 | Archivist | `archive/`, reference sweeps | Move unused config, update every reference, record why | Delete history or archive something still live |
 | Docs Editor | `README.md`, `.llm/`, `AGENTS.md` | Keep docs true to the tree | Invent rules or restate the TODO |
 
@@ -68,6 +68,9 @@ touches the live session.
    restart, or a user decision returns to the CEO instead of improvising.
 8. **The CEO stays free.** Maximum three concurrent workstreams; the CEO
    reserves context for the user, decisions, and final integration.
+9. **The live checkout never changes branches.** Markdown work happens in the
+   `./docs.sh` worktree; switching the live tree to `master` can serve older
+   config to the running session.
 
 ## Handoff template
 
@@ -87,5 +90,5 @@ the suggested next step.
 | Junior Inventory | Unused-config and dead-reference sweep |
 | Test Lead | Static QA, live-session regression, veto |
 | Archivist | Move `quickshell/` and `spotify-player/`, sweep references |
-| Release Manager | `working`/`master` slices, merges, PR |
+| Release Manager | `working`/`master` slices via `docs.sh`, merges, PR |
 | Docs Editor | `AGENTS.md`, `.llm/structure.md`, `README.md` truth |
