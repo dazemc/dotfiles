@@ -49,8 +49,8 @@ them. Do not let the queue rot.
   `hypr/scripts/*` helpers and `hypridle.conf`. Symlinked to
   `~/.config/hypr` by `setup.sh`.
 - The live bar is trickster, configured in its own checkout outside this
-  repo. `quickshell/` is legacy QML kept for reference, is not linked, and
-  is not autostarted; the old bar configuration has been removed.
+  repo. `archive/quickshell/` is retired QML kept for reference, is not
+  linked, and is not autostarted; the old bar configuration has been removed.
 - Shell config: `shell/bash/.bashrc`, `shell/bash/lsp_util.sh`,
   `shell/.alias`, `shell/zsh/.zshrc`.
 - tmux config: `tmux/.tmux.conf` with plugins managed as git submodules
@@ -73,8 +73,8 @@ them. Do not let the queue rot.
   separate repository. Contents may be read for verification; never print
   or commit credentials, tokens, or mail auth.
 - Not the bar. The live bar is trickster, configured outside this checkout;
-  `quickshell/` is legacy QML and is not linked. Do not extend the legacy
-  bar or wire it into autostart.
+  `archive/quickshell/` is retired QML and is not linked. Do not extend the
+  legacy bar or wire it into autostart.
 - Not a copy-based config. The live system reads these files through
   symlinks. Never copy a file into `~/.config` to "test" — fix the link
   map instead.
@@ -87,7 +87,7 @@ them. Do not let the queue rot.
 dotfiles
   setup.sh            symlink map: repo path -> live path (see .llm/structure.md)
   hyprland/hypr/      hyprland.lua + conf/*.lua + scripts/  -> ~/.config/hypr
-  quickshell/         legacy QML (not linked); trickster is the live bar
+  archive/            retired config (quickshell/), never linked
   shell/              .bashrc, .alias, zsh                   -> ~/, via individual links
   tmux/               .tmux.conf + plugin submodules         -> ~/
   nvim/               submodule                             -> ~/.config/nvim
@@ -101,7 +101,7 @@ script in the same session and record the finding.
 ## Configuration
 
 Config languages are per-area and stay per-area: Lua for Hyprland,
-QML for legacy Quickshell, shell for shell/tmux glue, TOML for spotify-player.
+shell for shell/tmux glue, TOML for spotify-player.
 Do not invent a shared templating layer, a config generator, or a second
 way to express the same setting.
 

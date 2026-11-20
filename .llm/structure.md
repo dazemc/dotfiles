@@ -21,8 +21,8 @@ disagree, fix the script and record the finding.
 | `hyprland/hypr/` | `~/.config/hypr` | live (directory link; covers `hyprland.lua`, `conf/`, `scripts/`, `hypridle.conf`) |
 | `environment.d/` | `~/.config/environment.d` | live (directory link; systemd reads this spelling) |
 | `shell/zsh/.zshrc` | `~/.zshrc` | macOS-only; linked only when `uname -s` is Darwin |
-| `quickshell/` | (nowhere) | legacy QML; trickster is the live bar, not linked or autostarted |
-| `arch/`, `update.sh`, `README.md` | (nowhere) | tooling, never linked |
+| `archive/quickshell/` | (nowhere) | retired QML; trickster is the live bar, not linked or autostarted |
+| `arch/`, `archive/`, `.llm/`, `update.sh`, `README.md` | (nowhere) | tooling and docs, never linked |
 
 `setup.sh` also runs `private/setup.sh` under sudo and fills in the global Git
 identity only when it is unset — both side effects outside the link map, both
@@ -47,9 +47,14 @@ reasons it needs a go-ahead (see `.llm/workflow.md`).
   (`monitor`, `autostart`, `envars`, `permissions`, `aesthetics`, `misc`,
   `input`, `keybindings`, `windows`); `conf/programs.lua` is required by both
   `autostart.lua` and `keybindings.lua`. Autostart launches trickster and
-  `hypridle`, never Quickshell or another legacy bar.
+  never Quickshell or another legacy bar; `hypridle` is intentionally disabled
+  (sleep/idle off since 2026-11-11) and is re-enabled in both `autostart.lua`
+  and `hypridle.conf` when wanted.
 - Bar: trickster is the live bar and is configured in its own checkout
-  outside this repo. `quickshell/` is legacy QML and is not linked.
+  outside this repo. `archive/quickshell/` is retired QML and is not linked.
+- Archive: `archive/` holds retired configuration (`quickshell/` today). It is
+  never linked or autostarted; `archive/README.md` states the policy, and
+  restoring an entry is a reviewed step that re-adds its links.
 - Shell: `.bashrc` sources `~/.alias` and, if present,
   `private/bash/.env`. `TMUX_PLUGIN_MANAGER_PATH` is exported but tpm is
   not used — plugins load via explicit `run-shell` lines in `.tmux.conf`.
