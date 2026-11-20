@@ -54,6 +54,10 @@ reasons it needs a go-ahead (see `.llm/workflow.md`).
 - Archive: `archive/` holds retired configuration (`quickshell/` today). It is
   never linked or autostarted; `archive/README.md` states the policy, and
   restoring an entry is a reviewed step that re-adds its links.
+- `environment.d`: `99-hyprland.conf` exports `HYPRLAND_CONFIG` and the Qt
+  Wayland text-input logging rule. systemd reads it at login only, so a
+  relink or edit is verified structurally (`readlink`, `cat`) until the next
+  login; it is not a live-reloadable file.
 - Shell: `.bashrc` sources `~/.alias` and, if present,
   `private/bash/.env`. `TMUX_PLUGIN_MANAGER_PATH` is exported but tpm is
   not used — plugins load via explicit `run-shell` lines in `.tmux.conf`.
