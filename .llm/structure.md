@@ -64,7 +64,9 @@ reasons it needs a go-ahead (see `.llm/workflow.md`).
   `private/bash/.env`. `TMUX_PLUGIN_MANAGER_PATH` is exported but tpm is
   not used — plugins load via explicit `run-shell` lines in `.tmux.conf`.
 - tmux: plugins are git submodules loaded by explicit `run-shell` lines.
-  Do not reintroduce tpm.
+  Do not reintroduce tpm. `tmux-battery` stays pinned but is not loaded: this
+  host has no battery, its status segment is commented out, and its options
+  were removed with the load line.
 - nvim: owned upstream (`lazy.nvim`-based). This repo only pins the commit;
   edits belong in the nvim repository.
 - msmtp: `msmtp/config` (gmail account) reads `SMTP_USER` for both `from`
