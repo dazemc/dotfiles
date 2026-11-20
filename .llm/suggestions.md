@@ -31,3 +31,7 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
   `norg` is missing and `nvim-treesitter` main does not ship it, so norg
   document images will not render. Install a standalone norg parser or set
   `image.doc.enabled = false` if that feature is not wanted.
+- **Curated package list has unused entries.** `arch/pkglist.txt` still lists
+  `hyprpaper` and `spotify-launcher` (the latter is no longer installed), while
+  `quickshell` and `waybar` are installed but unused. Remove the entries with a
+  go-ahead, then review `arch/backup.sh` output before committing a regeneration.
