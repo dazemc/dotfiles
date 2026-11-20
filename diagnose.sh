@@ -7,6 +7,7 @@
 set -uo pipefail
 
 cd "$(dirname "$0")" || exit 1
+OS="$(uname -s)"
 fails=0
 warns=0
 
@@ -42,6 +43,10 @@ done < <(grep -o '"\$PWD[^"]*"' setup.sh | tr -d '"' | sed 's/^\$PWD//')
 #    report real files/dirs and absent paths without calling them healthy.
 while IFS= read -r target; do
   live="${target//\$HOME/$HOME}"
+  if [ "$target" = "\$HOME/.zshrc" ] && [ "$OS" != "Darwin" ]; then
+    info "target '$target' skipped on $OS (macOS-only)"
+    continue
+  fi
   if [ -L "$live" ]; then
     link="$(readlink "$live")"
     case "$link" in

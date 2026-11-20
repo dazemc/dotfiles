@@ -49,6 +49,12 @@ function clearExistingConfig {
   chmod 700 "$backup_dir"
   echo "Backing up existing config to: $backup_dir"
   for config in "${CONFIG_LOCATION[@]}"; do
+    # .zshrc is macOS-only (see linkDirectories): on Linux setup.sh never
+    # relinks it, so moving it aside would silently remove the user's file.
+    if [[ "$config" == "$HOME/.zshrc" && "$OS" != "Darwin" ]]; then
+      echo "Skipping (macOS-only): $config"
+      continue
+    fi
     if [[ -e "$config" || -L "$config" ]]; then
       echo "Moving: $config -> $backup_dir/"
       mv "$config" "$backup_dir/"

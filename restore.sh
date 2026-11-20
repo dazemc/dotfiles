@@ -32,6 +32,9 @@ if [ "${1:-}" = "--dry-run" ]; then
   shift
 fi
 
+# .zshrc is macOS-only; never restore it over a Linux user's own zsh config.
+OS="$(uname -s)"
+
 BACKUP_DIR="${1:-}"
 if [ -z "$BACKUP_DIR" ] || [ ! -d "$BACKUP_DIR" ]; then
   echo "Usage: $0 [--dry-run] <backup-dir>" >&2
@@ -50,6 +53,10 @@ run() {
 }
 
 for target in "${CONFIG_LOCATION[@]}"; do
+  if [ "$target" = "$HOME/.zshrc" ] && [ "$OS" != "Darwin" ]; then
+    echo "Skipping (macOS-only): $target"
+    continue
+  fi
   entry="$BACKUP_DIR/$(basename "$target")"
   if [ ! -e "$entry" ] && [ ! -L "$entry" ]; then
     echo "Skipping (no backup entry): $target"
