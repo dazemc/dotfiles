@@ -26,6 +26,7 @@ check=false
 dry_run=false
 no_config=false
 no_packages=false
+no_mirrors=false
 pkglist="arch/server-pkglist.txt"
 branch="master"
 repo_url="git@github.com:dazemc/dotfiles.git"
@@ -39,6 +40,7 @@ Usage: arch/server-install.sh --host user@host [options]
   --dry-run          print the plan without connecting
   --no-config        install packages only
   --no-packages      link configs only
+  --no-mirrors       skip mirror ranking and the reflector timer
   --packages FILE    package list (default: arch/server-pkglist.txt)
   --branch NAME      dotfiles branch (default: master)
   --repo URL         dotfiles clone URL (default: git@github.com:dazemc/dotfiles.git)
@@ -69,6 +71,10 @@ while (($#)); do
       ;;
     --no-packages)
       no_packages=true
+      shift
+      ;;
+    --no-mirrors)
+      no_mirrors=true
       shift
       ;;
     --packages)
@@ -164,6 +170,9 @@ for p in ${packages[*]}; do
   fi
 done
 echo "missing packages: \$missing/${#packages[@]}"
+echo "mirrorlist servers: \$(grep -c '^Server' /etc/pacman.d/mirrorlist 2>/dev/null || true)"
+pacman -Q reflector >/dev/null 2>&1 && echo "reflector: installed" || echo "reflector: missing"
+systemctl is-enabled reflector.timer 2>/dev/null || true
 repo="\$HOME/GitHub/dotfiles"
 if [ -d "\$repo/.git" ]; then
   echo "repo: \$repo"
@@ -182,7 +191,13 @@ fi
 if ! $no_packages; then
   echo "installing ${#packages[@]} packages on $host; sudo may prompt..."
   pkg_args=$(printf '%q ' "${packages[@]}")
-  ssh -tt "${ssh_opts[@]}" "$host" "sudo pacman -Syu --needed -- $pkg_args"
+  if $no_mirrors; then
+    ssh -tt "${ssh_opts[@]}" "$host" "sudo pacman -Syu --needed -- $pkg_args"
+  else
+    echo "ranking mirrors and installing packages (sudo may prompt)..."
+    mirror_backup="/etc/pacman.d/mirrorlist.bak.\$(date +%Y%m%d-%H%M%S)"
+    ssh -tt "${ssh_opts[@]}" "$host" "sudo pacman -S --needed -- reflector && sudo cp -a /etc/pacman.d/mirrorlist $mirror_backup && sudo reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && sudo systemctl enable --now reflector.timer && sudo pacman -Syu --needed -- $pkg_args"
+  fi
 fi
 
 if ! $no_config; then
@@ -222,11 +237,28 @@ link() {
   mkdir -p "\$(dirname "\$dst")"
   ln -s "\$src" "\$dst"
 }
+link_keep() {
+  local src="\$1" dst="\$2"
+  if [ -L "\$dst" ]; then
+    if [ "\$(readlink "\$dst")" = "\$src" ]; then
+      return 0
+    fi
+    echo "preserving local symlink \$dst -> \$(readlink "\$dst")" >&2
+    return 0
+  fi
+  if [ -e "\$dst" ]; then
+    echo "preserving local \$dst" >&2
+    return 0
+  fi
+  mkdir -p "\$(dirname "\$dst")"
+  ln -s "\$src" "\$dst"
+}
 link "\$repo/shell/.alias" "\$HOME/.alias"
 link "\$repo/shell/bash/.bashrc" "\$HOME/.bashrc"
-link "\$repo/tmux/.tmux" "\$HOME/.tmux"
-link "\$repo/tmux/.tmux.conf" "\$HOME/.tmux.conf"
+link_keep "\$repo/tmux/.tmux" "\$HOME/.tmux"
+link_keep "\$repo/tmux/.tmux.conf" "\$HOME/.tmux.conf"
 link "\$repo/nvim" "\$HOME/.config/nvim"
+# msmtp is deliberately not linked: server-local msmtp stays untouched.
 echo "linked shell, tmux, and nvim; start a new login shell"
 EOF
   ssh "${ssh_opts[@]}" "$host" "bash $remote_tmp"

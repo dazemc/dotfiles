@@ -16,6 +16,7 @@ npm
 openssh
 python
 python-pip
+reflector
 ripgrep
 rsync
 sudo
