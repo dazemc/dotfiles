@@ -2,8 +2,8 @@
 
 How work in this repository is delegated. The chart is an operating model, not
 a promise of headcount: every role maps to a subagent session, and a small
-change may collapse several roles into one session. Authority still follows
-the boxes — a tester never approves the change it tested, and a junior never
+change may collapse several roles into one session. Authority follows the
+boxes — a tester never approves the change it tested, and a junior never
 touches the live session.
 
 ```text
@@ -26,13 +26,12 @@ touches the live session.
   | Engineering   |     | Quality       |     | Release       |     | Archive/Docs  |
   |               |     |               |     |               |     |               |
   | Senior        |     | Test Lead     |     | Release Mgr   |     | Archivist     |
-  |  Hyprland     |     |  Static QA    |     |  branch/slices|     |  moves, sweep |
-  | Senior        |     |  Live QA      |     |               |     | Docs Editor   |
+  |  Hyprland     |     |  Static QA    |     |  docs.sh      |     |  moves, sweep |
+  | Senior        |     |  Live QA      |     |  slices       |     | Docs Editor   |
   |  Shell/Tmux   |     | Security &    |     |               |     |  README/.llm  |
   | Senior        |     |  Privacy      |     |               |     |               |
   |  Systems      |     |               |     |               |     |               |
-  | Junior        |     |               |     |               |     |               |
-  |  engineers    |     |               |     |               |     |               |
+  | Juniors       |     |               |     |               |     |               |
   +---------------+     +---------------+     +---------------+     +---------------+
 ```
 
@@ -40,13 +39,13 @@ touches the live session.
 
 | Role | Owns | May do | Must not do |
 | --- | --- | --- | --- |
-| CEO / Partner | User relationship, priorities, risky approvals, phase merge | Ask the user, accept/reject work, integrate slices, edit when the team is blocked | Bulk implementation, test its own work, hide a failure |
-| Chief of Staff | Queue, assignment, handoffs, status | Triage an objective into ordered TODO steps, spawn and reassign agents | Change scope or authorize live-system actions |
-| Senior engineer | One domain (Hyprland, shell/tmux, systems) | Audit, implement hard changes, review juniors | Approve its own change, run `setup.sh`/sudo without the CEO |
+| CEO / Partner | User relationship, priorities, risky approvals, phase merge | Ask the user, accept/reject work, integrate verified slices | Bulk implementation, test its own work, hide a failure |
+| Chief of Staff | Queue, assignment, handoffs, status | Turn an objective into ordered TODO steps, spawn and reassign agents | Change scope or authorize live-system actions |
+| Senior engineer | One domain: Hyprland, shell/tmux, systems | Audit, implement hard changes, review juniors | Approve its own change, run `setup.sh`/sudo without the CEO |
 | Junior engineer | Bounded edits and inventories | Mechanical edits, reference sweeps, first-pass docs, evidence gathering | Touch live symlinks, secrets, `private/`, or destructive commands |
 | Test Lead / Testers | Independent verification | Reproduce, run static/live checks, **veto** a slice | Edit the change under test, approve without evidence |
-| Security & Privacy | Secrets, permissions, live-session hazards | Inspect `private/` by name/path, block a slice | Print secret values, commit credentials |
-| Release Manager | Branch and commit discipline | Stage slices in the `./docs.sh` worktree, merge `master` into `working`, open the PR | Bundle config with markdown, force-push a phase, switch the live checkout |
+| Security & Privacy | Secrets, permissions, live hazards | Inspect `private/` by name/path, block a slice | Print secret values, commit credentials |
+| Release Manager | Branch and commit discipline | Stage slices in the `docs.sh` worktree, merge `master` into `working`, open the PR | Bundle config with markdown, force-push, switch the live checkout |
 | Archivist | `archive/`, reference sweeps | Move unused config, update every reference, record why | Delete history or archive something still live |
 | Docs Editor | `README.md`, `.llm/`, `AGENTS.md` | Keep docs true to the tree | Invent rules or restate the TODO |
 
@@ -76,19 +75,6 @@ touches the live session.
 
 Every delegation states: role, scope (files/areas), constraints (read-only or
 edit), evidence required, done-criterion, and the escalation path. Every
-report back states: what changed, commands run, results, residual risk, and
-the suggested next step.
-
-## This phase's roster
-
-| Seat | Assignment |
-| --- | --- |
-| CEO | Scope, approvals, integration, user partnership |
-| Chief of Staff | Phase plan in `.llm/todo.md`, slice tracking |
-| Senior Shell/Tmux | Shell and tmux audit and fixes |
-| Senior Hyprland | Hyprland, idle, environment.d audit and fixes |
-| Junior Inventory | Unused-config and dead-reference sweep |
-| Test Lead | Static QA, live-session regression, veto |
-| Archivist | Move `quickshell/` and `spotify-player/`, sweep references |
-| Release Manager | `working`/`master` slices via `docs.sh`, merges, PR |
-| Docs Editor | `AGENTS.md`, `.llm/structure.md`, `README.md` truth |
+report back states: what changed, commands run, results, residual risk, and the
+suggested next step. The Chief of Staff assigns roles per phase; the current
+roster is recorded in `.llm/todo.md` when a phase starts.
