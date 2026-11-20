@@ -21,11 +21,6 @@ Phase: archive and harden. Source: user objective of 2026-11-20 (archive
 unused configs, optimize, fix bugs, add major-change suggestions). Executed
 by the roster in `.llm/org-chart.md`.
 
-8. **Unload the unused tmux battery plugin.** Remove the `run-shell
-   battery.tmux` line and the dead `@batt_*` options (no battery on this
-   host, no battery segment in the status bar). Done: `tmux source-file
-   ~/.tmux.conf` exits 0, no `batt` options remain, and the status bar keeps
-   its current segments. Size S.
 9. **Record major-change suggestions.** Append the follow-ups that need a
    separate decision: monitor fallback, Hyprland permission enforcement,
    retiring the tmux-battery submodule, consolidating the two network
