@@ -22,11 +22,6 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
 
 ## Open suggestions
 
-- **ccls ESP include paths are pinned to one toolchain build.**
-  `nvim/lua/daze/lspconfig.lua` hardcodes `esp-15.2.0_20251204` and libstdc++
-  paths; after an ESP-IDF update ccls points at missing headers. Derive the
-  newest `~/.espressif/tools/xtensa-esp-elf/*` directory or use the project's
-  `compile_commands.json`.
 - **Snacks image docs lack a norg parser.** `:checkhealth snacks` warns that
   `norg` is missing and `nvim-treesitter` main does not ship it, so norg
   document images will not render. Install a standalone norg parser or set
