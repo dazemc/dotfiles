@@ -21,11 +21,6 @@ Phase: archive and harden. Source: user objective of 2026-11-20 (archive
 unused configs, optimize, fix bugs, add major-change suggestions). Executed
 by the roster in `.llm/org-chart.md`.
 
-7. **Fix the inverted idle audio gate.** Make `audio-playing` succeed only
-   while audio plays, add an `audio-idle` condition for hypridle, and keep
-   the three on-timeout guards. Done: a stubbed `pactl` matrix proves
-   playing/not-playing behavior, `hypridle -c ... --help` parses the config,
-   and no idle action is skipped when audio stops. Size S.
 8. **Unload the unused tmux battery plugin.** Remove the `run-shell
    battery.tmux` line and the dead `@batt_*` options (no battery on this
    host, no battery segment in the status bar). Done: `tmux source-file
