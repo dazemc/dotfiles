@@ -17,6 +17,5 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
 
 ## Authorized work
 
-No steps authorized — the Neovim health phase landed on 2026-11-20. The
-nvim submodule pin is on `working`; merging it into `master` waits for the
-user's explicit go-ahead.
+No steps authorized — the Neovim health phase landed on 2026-11-20 and is
+being merged into `master` with the `working` config branch.
