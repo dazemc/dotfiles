@@ -21,7 +21,7 @@ disagree, fix the script and record the finding.
 | `environment.d/` | `~/.config/environment.d` | live (directory link; systemd reads this spelling) |
 | `shell/zsh/.zshrc` | `~/.zshrc` | macOS-only; backed up and linked only when `uname -s` is Darwin (Linux leaves the user's file alone) |
 | `archive/quickshell/` | (nowhere) | retired QML; trickster is the live bar, not linked or autostarted |
-| `arch/`, `archive/`, `.llm/`, `update.sh`, `README.md` | (nowhere) | tooling and docs, never linked |
+| `arch/`, `archive/`, `.llm/`, `docs.sh`, `update.sh`, `README.md` | (nowhere) | tooling and docs, never linked |
 
 `setup.sh` also runs `private/setup.sh` under sudo and fills in the global Git
 identity only when it is unset — both side effects outside the link map, both
