@@ -21,17 +21,6 @@ Phase: archive and harden. Source: user objective of 2026-11-20 (archive
 unused configs, optimize, fix bugs, add major-change suggestions). Executed
 by the roster in `.llm/org-chart.md`.
 
-5. **Repair live shell drift.** Fix the stale `~/develop/flutter` path to the
-   installed `~/.local/opt/flutter`, then replace the drifted real
-   `~/.bashrc` with the repo symlink (backup first). Done: `readlink
-   ~/.bashrc` points into the checkout, the Flutter binary resolves from a
-   fresh non-interactive shell, and the old file is in a timestamped backup.
-   Size S.
-6. **Repair live `environment.d` drift.** Rename `99-hyperland.conf` to
-   `99-hyprland.conf`, merge the live `QT_LOGGING_RULES` setting, and replace
-   the real live directory with the repo symlink (backup first). Done:
-   `readlink ~/.config/environment.d` points into the checkout, both
-   variables are present, and the old directory is backed up. Size S.
 7. **Fix the inverted idle audio gate.** Make `audio-playing` succeed only
    while audio plays, add an `audio-idle` condition for hypridle, and keep
    the three on-timeout guards. Done: a stubbed `pactl` matrix proves
