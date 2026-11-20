@@ -21,10 +21,6 @@ Phase: archive and harden. Source: user objective of 2026-11-20 (archive
 unused configs, optimize, fix bugs, add major-change suggestions). Executed
 by the roster in `.llm/org-chart.md`.
 
-3. **Drop the tracked AUR artifact.** Delete `arch/aura.tar.gz`, ignore
-   `arch/aura/` and the tarball, because `arch/install.sh` re-downloads them.
-   Done: `git ls-files arch/` has no tarball, `git check-ignore` covers both,
-   `bash -n arch/install.sh` passes. Size S.
 4. **Fix the macOS-only zsh backup.** `setup.sh` moves `~/.zshrc` aside on
    Linux even though it never relinks it. Skip the backup unless
    `OS=Darwin`; keep `restore.sh` consistent. Done: `bash -n` passes and a
