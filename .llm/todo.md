@@ -17,13 +17,6 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
 
 ## Authorized work
 
-Phase: Linode server install. Source: user objective of 2026-11-20 (install
-option for `daze@10.100.0.20`).
-
-1. **Add a server install path.** Add `arch/server-pkglist.txt` and
-   `arch/server-install.sh` for a headless Arch target: read-only `--check`,
-   `--dry-run`, package install over SSH, and optional safe shell/tmux/nvim
-   linking without `private/setup.sh`. Auth uses SSH keys or an interactive
-   prompt; never a stored password. Done: `bash -n`/`shellcheck` pass,
-   `--dry-run` prints the plan, `--check` works against the target, and the
-   password is not written anywhere. Size S.
+No steps authorized — the Linode server install phase landed on 2026-11-20.
+`working` carries the installer; merging it into `master` waits for the user's
+explicit go-ahead.
