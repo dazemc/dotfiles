@@ -1,0 +1,27 @@
+# Headless Arch server packages. Install with arch/server-install.sh.
+# Desktop-only entries (Hyprland, NVIDIA, audio, GUI) intentionally stay out.
+base
+base-devel
+bash-completion
+btop
+curl
+fd
+git
+jq
+lazygit
+man-db
+neovim
+nodejs
+npm
+openssh
+python
+python-pip
+ripgrep
+rsync
+sudo
+tmux
+tree-sitter
+tree-sitter-cli
+unzip
+wget
+zip
