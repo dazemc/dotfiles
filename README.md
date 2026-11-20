@@ -39,9 +39,13 @@ bash -n setup.sh && shellcheck setup.sh  # verify first: it rewrites live paths
 ./arch/server-install.sh --host daze@10.100.0.20          # packages + links
 ```
 
-It uses SSH key auth or an interactive ssh prompt; the remote sudo password is
-prompted on the TTY and is never stored. `--no-config` installs packages only;
-`--no-packages` links shell/tmux/nvim only. It never runs `private/setup.sh`.
+It ranks pacman mirrors with `reflector` before installing (backs up
+`/etc/pacman.d/mirrorlist` and enables `reflector.timer`; `--no-mirrors` skips
+this). Auth is SSH key or an interactive prompt; the remote sudo password is
+prompted on the TTY and never stored. `--no-config` installs packages only;
+`--no-packages` links shell/tmux/nvim only. Server-local `~/.tmux.conf` and
+`~/.config/msmtp/config` are preserved, and a dirty checkout skips updates. It
+never runs `private/setup.sh`.
 
 ## Layout
 
