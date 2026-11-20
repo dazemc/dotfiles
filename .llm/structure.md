@@ -61,8 +61,9 @@ reasons it needs a go-ahead (see `.llm/workflow.md`).
   relink or edit is verified structurally (`readlink`, `cat`) until the next
   login; it is not a live-reloadable file.
 - Shell: `.bashrc` sources `~/.alias` and, if present,
-  `private/bash/.env`. `TMUX_PLUGIN_MANAGER_PATH` is exported but tpm is
-  not used — plugins load via explicit `run-shell` lines in `.tmux.conf`.
+  `private/bash/.env`; `lsp_util.sh` copies a file read-only into `/tmp` and
+  removes it on exit. Plugins load via explicit `run-shell` lines in
+  `.tmux.conf` (no tpm).
 - tmux: plugins are git submodules loaded by explicit `run-shell` lines.
   Do not reintroduce tpm. `tmux-battery` stays pinned but is not loaded: this
   host has no battery, its status segment is commented out, and its options
