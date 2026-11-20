@@ -21,13 +21,20 @@ Phase: archive and harden. Source: user objective of 2026-11-20 (archive
 unused configs, optimize, fix bugs, add major-change suggestions). Executed
 by the roster in `.llm/org-chart.md`.
 
-9. **Record major-change suggestions.** Append the follow-ups that need a
-   separate decision: monitor fallback, Hyprland permission enforcement,
-   retiring the tmux-battery submodule, consolidating the two network
-   plugins, removing the installed `quickshell`/`waybar` packages, and
-   making `setup.sh` able to repair drifted links. Done: entries carry
-   what/where/why/next step, and resolved entries are removed. Size S.
-10. **Final verification.** Run `diagnose.sh`, `bash -n`/`shellcheck` on
+9. **Fix shell helper bugs.** Remove the dead `man`/`neofetch` aliases,
+   point `espinit` at the installed `/opt/esp-idf`, make `pacback` call
+   `arch/backup.sh` instead of writing into the caller's directory, drop the
+   unused tpm path, and give `lsp_util.sh` a cleanup trap and read-only nvim.
+   Done: every alias resolves or is gone, `bash -n`/`shellcheck` pass, and
+   `lsp_util.sh` removes its temp file on exit. Size S.
+10. **Record major-change suggestions.** Append the follow-ups that need a
+    separate decision: monitor fallback, Hyprland permission enforcement,
+    retiring the tmux-battery submodule, consolidating the two network
+    plugins, removing the installed `quickshell`/`waybar` packages, keeping
+    live links out of branch switches, and making `setup.sh` able to repair
+    drifted links. Done: entries carry what/where/why/next step, and
+    resolved entries are removed. Size S.
+11. **Final verification.** Run `diagnose.sh`, `bash -n`/`shellcheck` on
     touched scripts, a detached tmux parse, `hyprctl configerrors` (read
     only), and confirm every live link in the map. Done: all checks pass,
     output is pasted in the session, and the working tree is clean except
