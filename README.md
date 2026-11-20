@@ -17,4 +17,5 @@ bash -n setup.sh && shellcheck setup.sh  # verify first: it rewrites live paths
 
 - `./update.sh` fast-forwards every submodule to its branch tip — review each pin move as its own step.
 - `arch/backup.sh` writes full explicit package snapshots; `pkglist.txt` and `foreignpkglist.txt` are curated install lists, so review the diff before committing a regeneration. `arch/install.sh` installs from them (plus the aura AUR helper).
-- Verify without reinstalling: `hyprctl reload`, restart only the trickster process, `tmux source-file ~/.tmux.conf`.
+- Verify without reinstalling: `./diagnose.sh`, `hyprctl configerrors` (read only), restart only the trickster process, `tmux source-file ~/.tmux.conf`.
+- Agent roles and delegation live in `.llm/org-chart.md`. `archive/` holds retired config (`quickshell/`, `spotify-player/`); it is never linked.

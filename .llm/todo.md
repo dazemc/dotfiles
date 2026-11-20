@@ -21,13 +21,6 @@ Phase: archive and harden. Source: user objective of 2026-11-20 (archive
 unused configs, optimize, fix bugs, add major-change suggestions). Executed
 by the roster in `.llm/org-chart.md`.
 
-10. **Record major-change suggestions.** Append the follow-ups that need a
-    separate decision: monitor fallback, Hyprland permission enforcement,
-    retiring the tmux-battery submodule, consolidating the two network
-    plugins, removing the installed `quickshell`/`waybar` packages, keeping
-    live links out of branch switches, and making `setup.sh` able to repair
-    drifted links. Done: entries carry what/where/why/next step, and
-    resolved entries are removed. Size S.
 11. **Final verification.** Run `diagnose.sh`, `bash -n`/`shellcheck` on
     touched scripts, a detached tmux parse, `hyprctl configerrors` (read
     only), and confirm every live link in the map. Done: all checks pass,

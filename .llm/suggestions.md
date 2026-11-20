@@ -85,3 +85,20 @@ escalates them to `.llm/todo.md` (see `AGENTS.md` → Instruction precedence).
   `brightnessctl -s set 10`, but there is no `/sys/class/backlight`; if idle is
   re-enabled the 150 s listener fails. Use DPMS/awww brightness or drop the dim
   listener, and test with `hypridle -c ... -v`.
+- **Suspend would resume unlocked.** `hypridle.conf` has no `lock_cmd` or
+  `before_sleep_cmd`, no locker is installed, and `hypridle-suspend` calls
+  `systemctl suspend` at 1800 s. Install hyprlock (or another locker), add both
+  commands, and test before re-enabling hypridle.
+- **Brightness controls hit the keyboard LED, not the panel.**
+  `/sys/class/backlight` is empty and `brightnessctl` selects `input2::kana`;
+  the XF86 brightness binds and the dim listener change that LED. Use
+  `ddcutil` (installed) for DDC/CI or drop the keys and the dim path.
+- **Workspace window rules pin every later app, not just autostart.**
+  `windows.lua:51-77` sends any kitty/firefox/spotify/btop window to 2/3/5/4,
+  duplicating `autostart.lua`; a second terminal cannot stay on the current
+  workspace. Remove the class rules and rely on the exec-time workspace
+  arguments, or match unique titles.
+- **Login starts five heavy apps and a 257 MB animated wallpaper.**
+  `autostart.lua:14-19` launches trickster, awww with a 4K GIF, kitty+btop,
+  Spotify, and Firefox on every login. Drop btop/kitty from autostart and use a
+  static or lower-resolution wallpaper to cut login time and GPU work.
