@@ -28,14 +28,14 @@ case "${1:-}" in
         exit 1
       fi
     else
-      git -C "$root" worktree add "$wt" master
+      git -C "$root" worktree add "$wt" master >&2
     fi
-    git -C "$wt" pull --ff-only origin master
+    git -C "$wt" pull --ff-only origin master >&2
     echo "$wt"
     ;;
   --close)
-    git -C "$root" merge master --no-edit
-    git -C "$root" worktree remove "$wt"
+    git -C "$root" merge master --no-edit >&2
+    git -C "$root" worktree remove "$wt" >&2
     echo "docs.sh: master merged into working; $wt removed"
     ;;
   *)
