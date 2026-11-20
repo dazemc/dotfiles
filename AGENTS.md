@@ -39,8 +39,9 @@ running session, so the rules about the live system come before convenience.
   linked to `~/.config/environment.d`; read at login, not live-reloaded.
 - `msmtp/config` — file linked into `~/.config/msmtp/`; auth comes from
   `private/bash/.env` and `msmtp/smtp.env` by variable name only.
-- `arch/` — curated package lists and `install.sh` / `backup.sh`. Installing
-  packages needs a go-ahead.
+- `arch/` — curated package lists and `install.sh` / `backup.sh`;
+  `server-install.sh` provisions a headless target over SSH from
+  `server-pkglist.txt`. Installing packages needs a go-ahead.
 - `archive/` — retired config (`quickshell/`, `spotify-player/`). Never linked
   or autostarted; `archive/README.md` states the policy.
 - `docs.sh` — process tooling for markdown commits; never linked.

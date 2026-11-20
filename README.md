@@ -28,6 +28,21 @@ bash -n setup.sh && shellcheck setup.sh  # verify first: it rewrites live paths
 - Verify without reinstalling: `./diagnose.sh`, `hyprctl configerrors` (read
   only), restart only the trickster process, `tmux source-file ~/.tmux.conf`.
 
+## Server install
+
+`arch/server-install.sh` provisions a headless Arch target over SSH from
+`arch/server-pkglist.txt`:
+
+```sh
+./arch/server-install.sh --host daze@10.100.0.20 --check  # read-only report
+./arch/server-install.sh --host daze@10.100.0.20 --dry-run
+./arch/server-install.sh --host daze@10.100.0.20          # packages + links
+```
+
+It uses SSH key auth or an interactive ssh prompt; the remote sudo password is
+prompted on the TTY and is never stored. `--no-config` installs packages only;
+`--no-packages` links shell/tmux/nvim only. It never runs `private/setup.sh`.
+
 ## Layout
 
 Live configs are symlinked from `hyprland/`, `shell/`, `tmux/`, `nvim/`,
