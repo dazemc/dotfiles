@@ -17,5 +17,13 @@ Sizes: S <1 day, M 1–3 days, L 3+ days.
 
 ## Authorized work
 
-No steps authorized — the Neovim health phase landed on 2026-11-20 and is
-being merged into `master` with the `working` config branch.
+Phase: Linode server install. Source: user objective of 2026-11-20 (install
+option for `daze@10.100.0.20`).
+
+1. **Add a server install path.** Add `arch/server-pkglist.txt` and
+   `arch/server-install.sh` for a headless Arch target: read-only `--check`,
+   `--dry-run`, package install over SSH, and optional safe shell/tmux/nvim
+   linking without `private/setup.sh`. Auth uses SSH keys or an interactive
+   prompt; never a stored password. Done: `bash -n`/`shellcheck` pass,
+   `--dry-run` prints the plan, `--check` works against the target, and the
+   password is not written anywhere. Size S.
