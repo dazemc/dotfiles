@@ -1,7 +1,12 @@
 #!/bin/bash
-
-if pactl list sink-inputs | grep -q 'Corked: no'; then
+# Predicate: exit 0 while any audio sink input is playing.
+# hypridle's on-timeout guards use this to skip dim/DPMS/suspend during media.
+if ! command -v pactl >/dev/null 2>&1; then
   exit 1
-else
+fi
+
+if pactl list sink-inputs 2>/dev/null | grep -q 'Corked: no'; then
   exit 0
 fi
+
+exit 1

@@ -7,9 +7,9 @@ logfile        ~/.msmtp.log
 account gmail
 host smtp.gmail.com
 port 587
-from $SMTP_USER
-user $SMTP_USER
-passwordeval $SMTP_PASS
+eval echo from "$SMTP_USER"
+eval echo user "$SMTP_USER"
+passwordeval printenv SMTP_PASS
 
 account default : gmail
 

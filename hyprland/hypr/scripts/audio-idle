@@ -1,0 +1,8 @@
+#!/bin/bash
+# hypridle condition_cmd: exit 0 (fire on-timeout) only when no audio plays.
+# Non-zero defers the listener; hypridle retries it every condition_retry.
+if ~/.config/hypr/scripts/audio-playing; then
+  exit 1
+fi
+
+exit 0

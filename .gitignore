@@ -1,1 +1,4 @@
 msmtp/smtp.env
+# downloaded and extracted by arch/install.sh
+arch/aura.tar.gz
+arch/aura/

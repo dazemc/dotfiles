@@ -10,21 +10,20 @@
 # files are moved aside to a fresh safety backup first, never deleted.
 # System backups under /root/dotfiles-backup-* are out of scope here:
 # restoring those touches /etc and stays manual with a go-ahead.
-set -uo pipefail
+set -euo pipefail
 
 cd "$(dirname "$0")" || exit 1
 
 CONFIG_LOCATION=(
+  "$HOME/.alias"
   "$HOME/.bashrc"
   "$HOME/.zshrc"
   "$HOME/.tmux"
   "$HOME/.tmux.conf"
   "$HOME/.config/nvim"
-  "$HOME/.config/spotify-player"
   "$HOME/.config/msmtp"
   "$HOME/.config/hypr"
-  "$HOME/.config/quickshell"
-  "$HOME/.config/enviroment.d/"
+  "$HOME/.config/environment.d"
 )
 
 DRY_RUN=false
@@ -32,6 +31,9 @@ if [ "${1:-}" = "--dry-run" ]; then
   DRY_RUN=true
   shift
 fi
+
+# .zshrc is macOS-only; never restore it over a Linux user's own zsh config.
+OS="$(uname -s)"
 
 BACKUP_DIR="${1:-}"
 if [ -z "$BACKUP_DIR" ] || [ ! -d "$BACKUP_DIR" ]; then
@@ -51,11 +53,16 @@ run() {
 }
 
 for target in "${CONFIG_LOCATION[@]}"; do
+  if [ "$target" = "$HOME/.zshrc" ] && [ "$OS" != "Darwin" ]; then
+    echo "Skipping (macOS-only): $target"
+    continue
+  fi
   entry="$BACKUP_DIR/$(basename "$target")"
   if [ ! -e "$entry" ] && [ ! -L "$entry" ]; then
     echo "Skipping (no backup entry): $target"
     continue
   fi
+  run mkdir -p "$(dirname "$target")"
   if [ -L "$target" ]; then
     echo "Restoring: $entry -> $target (replacing symlink)"
     run rm "$target"
@@ -63,6 +70,7 @@ for target in "${CONFIG_LOCATION[@]}"; do
   elif [ -e "$target" ]; then
     if [ "$safety_ready" = false ]; then
       run mkdir -p "$SAFETY_DIR"
+      run chmod 700 "$SAFETY_DIR"
       safety_ready=true
     fi
     echo "Restoring: $entry -> $target (live file moved aside to $SAFETY_DIR/)"
