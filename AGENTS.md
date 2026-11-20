@@ -143,14 +143,18 @@ AGENTS.md             authoritative rules — the constitution
   `.llm/todo.md` that still has steps. No other branches exist.
 - Config lands on `working`; markdown lands on `master`. `AGENTS.md`, every file
   under `.llm/`, and docs pages commit directly on `master`, immediately, one
-  file per commit, and are pushed. After each markdown commit, merge `master`
+  file per commit, and are pushed. Do this in the short-lived worktree created
+  by `./docs.sh`; never switch the live checkout to `master`: `~/.config/hypr`
+  and the other live paths read this tree, so a branch switch can serve older
+  config to the running session. After each markdown commit, merge `master`
   back into `working` so the tree keeps reading current docs.
 - Never start a new phase without the user's explicit go-ahead in chat: no
   branch, no first step, until asked. Merging a finished phase likewise
   waits for confirmation.
 - Commit every finished TODO step as a slice: one config commit on `working`,
-  then one commit per touched markdown file on `master` (switch to `master`,
-  commit, push, switch back, merge `master` into `working`). A step is
+  then one commit per touched markdown file on `master` via the `./docs.sh`
+  worktree (commit and push from there, then `./docs.sh --close` merges
+  `master` into `working` and removes the worktree). A step is
   finished only when it is implemented, verified in the live session without
   breaking it, and removed from `.llm/todo.md`. Markdown never shares a
   commit with config or with another markdown file.
@@ -185,6 +189,10 @@ from that.
   `~/.tmux.conf`, `~/.config/nvim`, …) before relinking, and invokes
   `private/setup.sh` under sudo. `update.sh` moves every submodule.
   Either one can take the session down; both wait for confirmation.
+- Never switch the live checkout's branch. Markdown work goes through
+  `./docs.sh`; a checkout of `master` in the live tree can break the running
+  session (2026-11-20: `conf.monitor` not found and a 60 Hz fallback on the
+  next reload).
 - Prefer targeted verification over reinstalling: re-source, `hyprctl
   reload`, restart only the trickster process, `tmux source-file`. Reach
   for `setup.sh` only when the link map itself changed, and say so first.
