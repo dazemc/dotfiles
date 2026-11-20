@@ -8,7 +8,7 @@ if [ -f ~/GitHub/dotfiles/private/bash/.env ]; then
   source ~/GitHub/dotfiles/private/bash/.env
 fi
 export PATH="$PATH":"$HOME/.pub-cache/bin"
-export PATH="$HOME/develop/flutter/bin:$PATH"
+export PATH="$HOME/.local/opt/flutter/bin:$PATH"
 export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 export TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins/
 export LANG=en_US.utf8
