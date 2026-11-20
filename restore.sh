@@ -21,7 +21,6 @@ CONFIG_LOCATION=(
   "$HOME/.tmux"
   "$HOME/.tmux.conf"
   "$HOME/.config/nvim"
-  "$HOME/.config/spotify-player"
   "$HOME/.config/msmtp"
   "$HOME/.config/hypr"
   "$HOME/.config/environment.d"

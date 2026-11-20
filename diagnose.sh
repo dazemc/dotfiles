@@ -94,7 +94,7 @@ for bin in git hyprctl tmux nvim pacman; do
     fail "binary '$bin' missing"
   fi
 done
-for bin in uwsm rofi brightnessctl playerctl hyprcap spotify_player msmtp trickster awww; do
+for bin in uwsm rofi brightnessctl playerctl hyprcap msmtp trickster awww; do
   if command -v "$bin" >/dev/null; then
     pass "optional '$bin' present"
   else

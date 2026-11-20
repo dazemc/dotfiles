@@ -5,7 +5,6 @@ CONFIG_LIST=(
   "bash"
   "tmux"
   "neovim"
-  "spotify"
   "msmtp"
   "hyprland"
   "environment.d"
@@ -20,7 +19,6 @@ CONFIG_LOCATION=(
   "$HOME/.tmux"
   "$HOME/.tmux.conf"
   "$HOME/.config/nvim"
-  "$HOME/.config/spotify-player"
   "$HOME/.config/msmtp"
   "$HOME/.config/hypr"
   "$HOME/.config/environment.d"
@@ -81,9 +79,6 @@ function linkDirectories {
     "tmux")
       ln -s "$PWD/tmux/.tmux" "$HOME/.tmux"
       ln -s "$PWD/tmux/.tmux.conf" "$HOME/.tmux.conf"
-      ;;
-    "spotify")
-      ln -s "$PWD/spotify-player" "$HOME/.config/"
       ;;
     "msmtp")
       mkdir -p "$HOME/.config/msmtp/"

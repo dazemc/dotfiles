@@ -9,7 +9,6 @@ alias dealloc='sudo mount -o remount,size=50% /tmp'
 alias pacconfig='sudo pacman -Qii | awk '\''/\[modified\]/ {print $(NF - 1)}'\'''
 # backup pacman package list
 alias pacback='pacman -Qqen > pkglist.txt'
-alias spty='spotify_player'
 alias idfstart=idfsource
 alias lspread='bash ~/GitHub/dotfiles/shell/bash/lsp_util.sh'
 alias dotfiles='cd ~/GitHub/dotfiles/'
