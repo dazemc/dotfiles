@@ -19,7 +19,7 @@ disagree, fix the script and record the finding.
 | `msmtp/config` | `~/.config/msmtp/config` | live (file link; the dir is created, only the file is linked) |
 | `hyprland/hypr/` | `~/.config/hypr` | live (directory link; covers `hyprland.lua`, `conf/`, `scripts/`, `hypridle.conf`) |
 | `environment.d/` | `~/.config/environment.d` | live (directory link; systemd reads this spelling) |
-| `shell/zsh/.zshrc` | `~/.zshrc` | macOS-only; linked only when `uname -s` is Darwin |
+| `shell/zsh/.zshrc` | `~/.zshrc` | macOS-only; backed up and linked only when `uname -s` is Darwin (Linux leaves the user's file alone) |
 | `archive/quickshell/` | (nowhere) | retired QML; trickster is the live bar, not linked or autostarted |
 | `arch/`, `archive/`, `.llm/`, `update.sh`, `README.md` | (nowhere) | tooling and docs, never linked |
 
